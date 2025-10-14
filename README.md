@@ -55,11 +55,23 @@ Desenvolver uma plataforma robusta e intuitiva para centralizar a consulta de in
 ### 🛍️ Módulo de Inclusão Local
 * **Economia Viva:** Módulo que destaca e mapeia o pequeno comércio, artesanato e serviços próximos ao usuário.
 
+## 🏁 Conclusão
 
-## 👥 Equipe do Projeto
-Alef Emanuel M. Verissimo, 
-Bruna Xavier A. de Melo, 
-Cauany N. Rodrigues,
-Jefferson Thiago F. do Nascimento, 
-Nikson Gabriel S. Silva
----
+A **Plataforma Viva Areia** representa um avanço estratégico para o turismo e o desenvolvimento local:
+
+* **Centraliza** a informação, combatendo a desorganização e a dificuldade de acesso.
+* **Reforça** o compromisso municipal com um turismo mais inclusivo, moderno e de qualidade.
+* Cria um ambiente digital que **prepara a cidade** para um futuro onde a experiência turística é sinônimo de autonomia e descoberta.
+
+## 📷 Identidade Visual
+
+<img width="1071" height="466" alt="{2189FCB9-39B8-490A-8FE1-79C4F14A1605}" src="https://github.com/user-attachments/assets/b497e05c-0156-482e-aa4c-a054f05612e8" />
+
+
+## Equipe
+
+* Alef Emanuel
+* Bruna Xavier
+* Cauany Rodrigues
+* Jefferson Thiago
+* Nikson Silva
