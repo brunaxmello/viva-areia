@@ -32,8 +32,6 @@ O **Viva Areia** resolve esses desafios ao criar um **ecossistema digital integr
 
 Desenvolver uma plataforma robusta e intuitiva para centralizar a consulta de informações e a navegação em Areia, promovendo **eficiência, descoberta e engajamento** com a cultura e história local.
 
-### Específicos
-
 #### 🧑‍🦱 Para Turistas/Moradores:
 * **Planejamento Facilitado:** Organizar roteiros de forma rápida e intuitiva.
 * **Conhecimento Aprofundado:** Acessar informações detalhadas sobre **todos** os pontos (história, horários, acessibilidade).
@@ -43,8 +41,6 @@ Desenvolver uma plataforma robusta e intuitiva para centralizar a consulta de in
 * **Reposicionamento:** Posicionar Areia como um modelo de "Cidade Inteligente" em gestão de turismo.
 * **Sustentabilidade:** Criar uma ferramenta digital viva e de fácil manutenção/expansão.
 * **Economia Fortalecida:** Aumentar a participação e visibilidade de pequenos empreendimentos (Economia Viva).
-
-
 
 ## 📌 Funcionalidades Chave
 
