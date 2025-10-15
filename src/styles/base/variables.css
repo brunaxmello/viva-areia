@@ -4,30 +4,31 @@
    :root {
   
     /* Cores principais de identidade */
-    --primary-color: #002EFD; /* identidade da marca */
-    --secondary-color: #A3C1F5; /* tom de apoio */
+    --primary-color: #294727; 
+    --secondary-color: #BD632F; 
     --accent-color: #0011ff; /* destaques, links, botões */
-    --muted-color: #4F555A; /* elementos desabilitados ou menos destacados */
+    --muted-color: #999999; /* elementos desabilitados ou menos destacados */
     --success-color: #5deb5d; /* sucesso */
     --warning-color: #ffcc00; /* aviso */
     --error-color: #ff4d4f; /* erro */
   
     /* Cores de bordas */
-    --border-dark: #002EFD; 
-    --border-light: #9E9E9E; 
+    --border-dark: #294727; 
+    --border-light: #BD632F; 
+    --border-focus: #0011ff;
   
     /* Cores de texto */
-    --text-dark: #4F555A; 
-    --text-light: #FFF; 
+    --text-dark: #232323; 
+    --text-light: #FFFFFF; 
     --text-accent: #002EFD;
-    --text-muted: #74797c; 
+    --text-muted: #999999; 
     --text-success: #5deb5d; 
   
     /* Cores de fundo */
-    --bg-light: #F6F6F6;
-    --bg-dark: #002EFD;
-    --bg-accent: #ff6b3542; 
-    --bg-muted: #E0E0E0; 
+    --bg-light: #F3F5F8;
+    --bg-dark: #294727;
+    --bg-accent: #002EFD; 
+    --bg-muted: #999999; 
     --bg-success: #BFFFBF;
   
     /* Tipografia */
@@ -59,21 +60,18 @@
     --space-xl: 2.5rem;    /* 40px */
     --space-2xl: 3rem;     /* 48px */
   
-    /* Gradiente do fundo */
-    --bg-gradient: radial-gradient(
-      ellipse 100% 70% at bottom left, 
-      rgba(0, 46, 253, 0.3) 0%,
-      rgba(0, 46, 253, 0.2) 30%,
-      rgba(0, 46, 253, 0.1) 60%,
-      var(--bg-light) 100%
-    );
-  
       /* Border radius */
-    --radius: 0.5rem;      /* 8px */
+    --radius-xs: 0.5rem;   /* 8px */
+    --radius-lg: 1rem;    /* 16px */
+    --radius-full: 9999px; /* círculo */
     
     /* Sombras */
     --shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
-    
+
     /* Transições */
-    --transition: 250ms ease-in-out;
+    --transicao-rapida: 0.2s ease-out;
+    --transicao-moderada: 0.3s ease-in-out;
+    --transicao-suave-saida: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transicao-padrao-cor: color var(--transicao-rapida), background-color var(--transicao-rapida);
+    --transicao-padrao-transform: transform var(--transicao-rapida) var(--transicao-suave-saida);
   }

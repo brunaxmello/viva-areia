@@ -2,4 +2,6 @@
    ARQUIVO PRINCIPAL - IMPORTAÇÕES
    =========================================== */
 
-/* Importa as fontes do projeto */
+/* 1. Base (regras gerais e variáveis) */
+@import url("base/variables.css");
+@import url("base/reset.css");
