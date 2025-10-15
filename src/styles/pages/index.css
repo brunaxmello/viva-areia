@@ -1,25 +1,79 @@
 .app-view {
     min-height: 93vh;
+    margin: 0 auto;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: var(--space-md);
 }
 
 .app-view#welcome-screen {
     min-height: 70vh;
 }
 
-#welcome-screen p {
+.initial-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.logo-img {
+    max-width: 250px;
+}
+
+.initial-message p {
+    display: inline-block;
     text-align: center;
+    max-width: 223px;
 }
 
 .illustration-of-houses {
     position: fixed;
-    bottom: 0;
+    bottom: 0px;
     height: 180px;
     z-index: 2;
     object-fit: cover;
+}
+
+.illustration-of-houses img {
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    #welcome-screen {
+        max-width: 80%;
+    }
+    .illustration-of-houses {
+        height: 250px;
+    }
+}
+
+@media (min-width: 992px) {
+
+    #welcome-screen {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .illustration-of-houses {
+        position: relative;
+        width: 50%;
+    }
+
+    .illustration-of-houses img {
+        object-position: left;
+    }
+
+    .initial-message {
+        align-items: flex-start;
+        gap: var(--space-lg);
+    }
+
+    .initial-message p {
+        text-align: left;
+    }
 }
