@@ -2,7 +2,7 @@
 
 ## 💡 Sobre o Projeto
 
-O **Viva Areia** é um aplicativo mobile inovador projetado para ser a principal **plataforma integrada de turismo** da cidade de Areia.
+O **Viva Areia** é um aplicativo mobile inovador projetado para ser a principal **plataforma integrada de turismo** da cidade de Areia - PB.
 
 Nossa missão é otimizar a experiência dos visitantes e democratizar o acesso à vasta riqueza histórica, natural e gastronômica da cidade, promovendo a exploração de forma **completa, eficiente e autônoma**. O aplicativo atua como um guia geolocalizado, conectando turistas e moradores ao coração vibrante de Areia.
 
