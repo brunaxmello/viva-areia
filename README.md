@@ -1,4 +1,4 @@
-# Viva Areia: Seu Guia Interativo da Cidade
+# Viva Areia: Seu Guia Turístico da Cidade
 
 ## 💡 Sobre o Projeto
 
