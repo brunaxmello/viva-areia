@@ -17,8 +17,8 @@
     <meta property="og:description"
         content="Descubra Areia - PB com o Viva Areia: um guia digital completo com rotas, história, gastronomia e comércio local. Explore, planeje e viva a cidade de forma inteligente.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="link">
-    <meta property="og:image" content="link/src/images/logo-preview.png">
+    <meta property="og:url" content="https://brunaxmello.github.io/viva-areia/">
+    <meta property="og:image" content="https://brunaxmello.github.io/viva-areia/src/images/logo-preview.png">
 
     <!-- Manifesto do PWA -->
     <link rel="manifest" href="manifest.json">
@@ -39,12 +39,13 @@
 <body>
 
     <div class="container">
+
         <section id="welcome-screen" class="app-view">
             <div class="initial-message">
                 <img class="logo-img" src="src/images/logo-viva-areia.png"
                     alt="Logo com os dizeres viva areia e ao lago a imagem de uma cana-de-açúcar">
                 <p>Transforme sua visita em uma descoberta completa</p>
-                <button class="btn btn-primary">Explore aqui</button>
+                <button id="explore-button" class="btn btn-primary">Explore aqui</button>
             </div>
             <div class="illustration-of-houses">
                 <img src="src/images/ilustracao-de-casas.png" alt="">
@@ -52,7 +53,38 @@
 
         </section>
 
+        <main id="main-view" class="app-view">
+            <header class="main-header container">
+                <div class="main-header-content">
+                    <a href="#"><img class="logo-img-header" src="src/images/logo-viva-areia.png"
+                            alt="Logo com os dizeres viva areia e ao lago a imagem de uma cana-de-açúcar"></a>
+                    <form role="search" class="search-box">
+
+                        <label for="search-input" class="sr-only">Pesquisar locais</label>
+
+                        <input type="search" id="search-input" name="q" placeholder="Pesquisar por locais">
+
+                        <button type="submit" class="search-button"><i class="bi bi-search"
+                                aria-hidden="true"></i></button>
+
+                    </form>
+                    <a class="header-link" href="https://maps.app.goo.gl/cmG8UoEpCYsf1u656" target="_blank"><i
+                            class="bi bi-geo-alt-fill"></i> Areia, Paraíba</a>
+
+                </div>
+
+            </header>
+
+
+
+            <div class="explore-content">
+                explorar
+            </div>
+        </main>
+
     </div>
+
+    <script src="./src/scripts/index.js"></script>
 
 </body>
 

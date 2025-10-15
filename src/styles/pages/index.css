@@ -6,7 +6,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 58px;
+    padding: var(--space-sm) 0;
 }
+
+/* === Tela de boas-vindas === */
 
 .app-view#welcome-screen {
     min-height: 70vh;
@@ -19,7 +23,7 @@
     gap: var(--space-md);
 }
 
-.logo-img {
+#welcome-screen .logo-img {
     max-width: 250px;
 }
 
@@ -33,7 +37,6 @@
     position: fixed;
     bottom: 0px;
     height: 180px;
-    z-index: 2;
     object-fit: cover;
 }
 
@@ -42,18 +45,111 @@
     object-fit: cover;
 }
 
+/* === MAIN VIEW === */
+
+#main-view {
+    display: none;
+}
+
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-light);
+}
+
+.main-header.container {
+    padding-bottom: var(--space-sm);
+}
+
+.main-header-content {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: 
+    "logo-img-header header-link"
+    "search-box search-box";
+    align-items: center;
+    gap: var(--space-lg);
+
+}
+
+.logo-img-header {
+    width: 90px;
+    max-width: 90px;
+    height: auto;
+
+    grid-area: logo-img-header;
+}
+
+.header-link {
+    grid-area: header-link;
+    text-align: right;
+    width: 100%;
+    align-self: center;
+    color: var(--text-muted)
+}
+
+/* === BARRA DE PESQUISA === */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.search-box {
+    grid-area: search-box;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: aqua;
+    background-color: var(--bg-light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 12px var(--space-sm);
+}
+
+.search-box input[type="search"] {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: var(--text-base);
+    color: var(--text-dark);
+    padding: 0;
+    margin: 0;
+
+    &::placeholder {
+        color: var(--text-muted);
+    }
+}
+
+.search-box .search-button {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: color var(--transicao-rapida);
+}
+
 @media (min-width: 768px) {
     #welcome-screen {
         max-width: 80%;
     }
+
     .illustration-of-houses {
         height: 250px;
     }
-}
-
-@media (min-width: 992px) {
 
     #welcome-screen {
+        max-width: 100%;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
@@ -73,7 +169,24 @@
         gap: var(--space-lg);
     }
 
-    .initial-message p {
-        text-align: left;
+    #main-view {
+        display: block !important;
+        padding-top: 10px;
+        background-color: aqua;
     }
+
+    .main-header-content {
+        grid-template-columns: 1fr 1fr auto;
+        grid-template-areas: "logo-img-header search-box header-link";
+        gap: var(--space-sm);
+    }
+
+}
+
+@media (min-width: 992px) {
+
+    #welcome-screen {
+        max-width: 100%;
+    }
+
 }
