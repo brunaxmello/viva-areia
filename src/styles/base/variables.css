@@ -66,7 +66,7 @@
     --radius-full: 9999px; /* círculo */
     
     /* Sombras */
-    --shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
+    --shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 
     /* Transições */
     --transicao-rapida: 0.2s ease-out;
