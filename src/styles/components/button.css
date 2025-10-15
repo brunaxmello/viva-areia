@@ -1,0 +1,48 @@
+/* ===========================================
+    BOTÕES - COMPONENTES
+=========================================== */
+
+/* Botão geral */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-lg);
+    font-weight: var(--font-weight-semibold);
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: var(--font-size-base);
+    text-align: center;
+    min-height: 44px;
+}
+
+.btn:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+}
+
+.btn:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Botão primário */
+
+.btn-primary {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-color);
+    color: var(--text-light);
+}

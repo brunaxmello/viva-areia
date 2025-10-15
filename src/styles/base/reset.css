@@ -22,7 +22,7 @@
        color: var(--text-dark);
        font-family: var(--font-family-primary);
        font-size: var(--text-base);
-       font-weight: var(--font-weight-normal);
+       font-weight: var(--font-weight-semibold);
        background-color: var(--bg-light);
        overflow-x: hidden;
    

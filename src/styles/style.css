@@ -5,3 +5,18 @@
 /* 1. Base (regras gerais e variáveis) */
 @import url("base/variables.css");
 @import url("base/reset.css");
+
+/* 2. Componentes */
+@import url("components/button.css");
+
+/* 3. Estilos de páginas específicas */
+@import url("pages/index.css");
+
+/* ESTILOS GERAIS DO PROJETO */
+
+.container {
+   width: 100%;
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: var(--space-md);
+}
