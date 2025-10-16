@@ -23,7 +23,7 @@
     "visita": {
       "tipo": "Gratuita"
     },
-    "imagem": "",
+    "imagem": "src/images/images-locations/engenho-triunfo.png",
     "mapa": {
       "latitude": -6.975146811230601,
       "longitude": 35.69479604405134,
@@ -87,6 +87,7 @@
     }
   },
  
+
   {
     "nome": "Teatro Minerva",
     "descricao": "O Teatro Minerva, localizado na cidade de Areia, na Paraíba, é o mais antigo teatro do estado, inaugurado em 1859. Além de sua importância histórica e cultural, o Teatro Minerva desempenhou um papel significativo na luta pela abolição da escravatura.",
