@@ -55,7 +55,32 @@
   },
   {
     "nome": "Mata do Pau-Ferro",
-    "descricao": "A Mata do Pau-Ferro, em Areia é um parque estadual/correspondente a uma unidade de conservação que protege um dos remanescentes mais significativos de Mata Atlântica de brejo de altitude na região do Brejo Paraibano."
-
+    "descricao": "A Mata do Pau-Ferro, em Areia é um parque estadual/correspondente a uma unidade de conservação que protege um dos remanescentes mais significativos de Mata Atlântica de brejo de altitude na região do Brejo Paraibano.",
+    "categoria": "natureza",
+    "informacoes": {
+      "horario": "Horário único às 9h",
+      "dias-abertos": "Trilha guiada sob agendamento",
+      "o-que-levar": "Kit básico, roupas leves, calçados fechados, chapéu, água",
+      "tempo-medio-visita": "2 a 3 horas"
+    },
+    "atracoes": [
+      "Trilha ecológica guiada",
+      "Observação de aves",
+      "Contato com a natureza",
+      "Paisagens naturais"
+    ],
+    "contato": {
+      "endereco": "Chã de Jardim, Areia – PB",
+      "instagram": "@parqueestadualmatadopauferro"
+    },
+    "visita": {
+      "tipo": "Paga"
+    },
+    "imagem": "",
+    "mapa": {
+      "latitude": -6.969103921713629,
+      "longitude": -35.741384365597604,
+      "link-mapa" : "https://maps.app.goo.gl/wBnxnvLMjpKsWSM98"
+    }
   }
 ]
