@@ -189,9 +189,24 @@
 }
 
 .search-box .search-button {
-    background: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    transition: color var(--transicao-rapida);
+    color: var(--text-muted);
+}
+
+/* === EXPLORE CONTENT === */
+
+.explore-content {
+    margin-top: 65px;
+    background-color: black;
+}
+
+#routes-list {
+    background-color: brown;
+}
+
+@media (min-width: 992px) {
+
+    .explore-content {
+        margin-top: 0px;
+    }
+
 }
