@@ -22,8 +22,11 @@
     "visita": {
       "tipo": "Gratuita"
     },
-    "imagem": ""
-    
+    "imagem": "",
+    "mapa": {
+      "latitude": -6.975146811230601,
+      "longitude": 35.69479604405134
+    }
   },
     {
     "nome": "Engenho Triunfo",
@@ -48,5 +51,10 @@
       "tipo": "Gratuita"
     },
     "imagem": ""
+  },
+  {
+    "nome": "Mata do Pau-Ferro",
+    "descricao": "A Mata do Pau-Ferro, em Areia é um parque estadual/correspondente a uma unidade de conservação que protege um dos remanescentes mais significativos de Mata Atlântica de brejo de altitude na região do Brejo Paraibano."
+
   }
 ]
