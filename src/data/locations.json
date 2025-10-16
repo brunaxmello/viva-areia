@@ -54,7 +54,7 @@
       "tipo": "Gratuita"
     },
     "imagem": ""
-  },
+  }, 
 
   {
     "nome": "Mata do Pau-Ferro",
@@ -84,6 +84,36 @@
       "latitude": -6.969103921713629,
       "longitude": -35.741384365597604,
       "link-mapa" : "https://maps.app.goo.gl/oMW69C1J8VvHfzKs7"
+    }
+  },
+
+  {
+    "nome": "Teatro Minerva",
+    "descricao": "O Teatro Minerva, localizado na cidade de Areia, na Paraíba, é o mais antigo teatro do estado, inaugurado em 1859. Além de sua importância histórica e cultural, o Teatro Minerva desempenhou um papel significativo na luta pela abolição da escravatura.",
+    "categoria": "historia",
+    "informacoes": {
+      "horario": "8h às 11h30 e 13h30 às 17h",
+      "dias-abertos": "Terça a Domingo",
+      "o-que-levar": "Câmera fotográfica",
+      "tempo-medio-visita": "1 hora"
+    }, 
+    "atracoes": [
+      "Visita guiada ao teatro",
+      "Exposições temporárias",
+      "Eventos culturais"
+    ],
+    "contato": {
+      "endereco": "R. Epitácio Pessoa - Areia, PB",
+      "instagram": "teatrominervaareia"
+    },
+    "visita": {
+      "tipo": "Paga"
+    },
+    "imagem": "",
+    "mapa": {
+      "latitude": -6.96758667295337,
+      "longitude": -35.701774270601135,
+      "link-mapa" : "https://maps.app.goo.gl/CGTvYjyH7YU2cpm56"
     }
   }
 ]
