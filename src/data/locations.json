@@ -2,6 +2,7 @@
   {
     "nome": "Engenho Triunfo",
     "descricao": "Um dos principais atrativos de Areia! Lá, você pode acompanhar o processo artesanal da famosa cachaça Triunfo, degustar produtos típicos, saborear a culinária nordestina e aproveitar um ambiente rural encantador, cheio de história e natureza.",
+    "categoria": "engenhos",
     "informacoes": {
       "horario": "8h às 17h",
       "dias-abertos": "Todos os dias (exceto feriados)",
@@ -22,6 +23,7 @@
       "tipo": "Gratuita"
     },
     "imagem": ""
+    
   },
     {
     "nome": "Engenho Triunfo",
