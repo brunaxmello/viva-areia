@@ -253,7 +253,7 @@
     gap: var(--space-xs);
     overflow-x: auto;
     flex-wrap: nowrap;
-    padding: 0.2rem 0;
+    padding-bottom: 0.5rem;
 }
 
 .btn-category {
