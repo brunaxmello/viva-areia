@@ -12,7 +12,7 @@ const CATEGORY_ICONS = {
 };
 
 let activeCategory = "Todas";
-let allLocations = [];
+export let allLocations = [];
 
 const routesListContainer = document.getElementById("routes-list");
 const searchInput = document.getElementById("search-input");
@@ -30,7 +30,7 @@ function renderLocations(locations) {
 
   locations.forEach((location) => {
     const cardHTML = `
-            <div class="card-location">
+            <div class="card-location" data-location-id="${location.id}">
                 <div class="image-card-location">
                     <img loading="lazy" src="${
                       location.imagem
@@ -41,7 +41,7 @@ function renderLocations(locations) {
                         <h3>${location.nome}</h3>
                         <p>${location.descricao.substring(0, 80)}...</p>
                     </div>
-                    <button class="btn btn-primary btn-add-location">Adicionar +</button>
+                    <button class="btn btn-primary btn-card" data-location-id="${location.id}">Adicionar <i class="bi bi-plus-lg"></i></button>
                 </div>
             </div>
         `;

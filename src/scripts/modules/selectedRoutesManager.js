@@ -1,0 +1,1 @@
+// Armazenar a lista no localStorage para que a outra página (selected-routes.js) possa acessá-la.
