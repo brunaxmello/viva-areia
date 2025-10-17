@@ -3,7 +3,7 @@
   {
     "nome": "Engenho Triunfo",
     "descricao": "Um dos principais atrativos de Areia! Lá, você pode acompanhar o processo artesanal da famosa cachaça Triunfo, degustar produtos típicos, saborear a culinária nordestina e aproveitar um ambiente rural encantador, cheio de história e natureza.",
-    "categoria": "engenhos",
+    "categorias": ["engenhos"],
     "informacoes": {
       "horario": "8h às 17h",
       "dias-abertos": "Todos os dias (exceto feriados)",
@@ -34,7 +34,7 @@
   {
     "nome": "Mata do Pau-Ferro",
     "descricao": "A Mata do Pau-Ferro, em Areia é um parque estadual/correspondente a uma unidade de conservação que protege um dos remanescentes mais significativos de Mata Atlântica de brejo de altitude na região do Brejo Paraibano.",
-    "categoria": "natureza",
+    "categorias": ["natureza"],
     "informacoes": {
       "horario": "Horário único às 9h",
       "dias-abertos": "Trilha guiada sob agendamento",
@@ -66,7 +66,7 @@
   {
     "nome": "Teatro Minerva",
     "descricao": "O Teatro Minerva, localizado na cidade de Areia, na Paraíba, é o mais antigo teatro do estado, inaugurado em 1859. Além de sua importância histórica e cultural, o Teatro Minerva desempenhou um papel significativo na luta pela abolição da escravatura.",
-    "categoria": "historia",
+    "categorias": ["historia"],
     "informacoes": {
       "horario": "8h às 11h30 e 13h30 às 17h",
       "dias-abertos": "Terça a Domingo",
