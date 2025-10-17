@@ -1,6 +1,6 @@
 [
-
   {
+    "id": 1,
     "nome": "Engenho Triunfo",
     "descricao": "Um dos principais atrativos de Areia! Lá, você pode acompanhar o processo artesanal da famosa cachaça Triunfo, degustar produtos típicos, saborear a culinária nordestina e aproveitar um ambiente rural encantador, cheio de história e natureza.",
     "categorias": ["engenhos", "cultura"],
@@ -27,11 +27,12 @@
     "mapa": {
       "latitude": -6.975146811230601,
       "longitude": 35.69479604405134,
-      "link-mapa" : "https://maps.app.goo.gl/wBnxnvLMjpKsWSM98"
+      "link-mapa": "https://maps.app.goo.gl/wBnxnvLMjpKsWSM98"
     }
   },
 
   {
+    "id": 2,
     "nome": "Mata do Pau-Ferro",
     "descricao": "A Mata do Pau-Ferro, em Areia é um parque estadual/correspondente a uma unidade de conservação que protege um dos remanescentes mais significativos de Mata Atlântica de brejo de altitude na região do Brejo Paraibano.",
     "categorias": ["natureza"],
@@ -58,12 +59,11 @@
     "mapa": {
       "latitude": -6.969103921713629,
       "longitude": -35.741384365597604,
-      "link-mapa" : "https://maps.app.goo.gl/oMW69C1J8VvHfzKs7"
+      "link-mapa": "https://maps.app.goo.gl/oMW69C1J8VvHfzKs7"
     }
   },
- 
-
   {
+    "id": 3,
     "nome": "Teatro Minerva",
     "descricao": "O Teatro Minerva, localizado na cidade de Areia, na Paraíba, é o mais antigo teatro do estado, inaugurado em 1859. Além de sua importância histórica e cultural, o Teatro Minerva desempenhou um papel significativo na luta pela abolição da escravatura.",
     "categorias": ["historia", "cultura"],
@@ -72,7 +72,7 @@
       "dias-abertos": "Terça a Domingo",
       "o-que-levar": "Câmera fotográfica",
       "tempo-medio-visita": "1 hora"
-    }, 
+    },
     "atracoes": [
       "Visita guiada ao teatro",
       "Exposições temporárias",
@@ -89,7 +89,7 @@
     "mapa": {
       "latitude": -6.96758667295337,
       "longitude": -35.701774270601135,
-      "link-mapa" : "https://maps.app.goo.gl/CGTvYjyH7YU2cpm56"
+      "link-mapa": "https://maps.app.goo.gl/CGTvYjyH7YU2cpm56"
     }
   }
 ]
