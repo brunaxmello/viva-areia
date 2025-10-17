@@ -35,12 +35,16 @@ function renderLocations(locations) {
 
   locations.forEach((location) => {
     const cardHTML = `
-            <div class="card-local">
-                <img src="${location.imagem}" alt="Imagem de ${location.nome}">
+            <div class="card-location">
+                <div class="image-card-location">
+                    <img loading="lazy" src="${location.imagem}" alt="Imagem de ${location.nome}">
+                </div>
                 <div class="card-info">
-                    <h3>${location.nome}</h3>
-                    <p>${location.descricao.substring(0, 80)}...</p>
-                    <button class="btn-adicionar">Adicionar +</button>
+                    <div class="card-info-content">
+                        <h3>${location.nome}</h3>
+                        <p>${location.descricao.substring(0, 80)}...</p>
+                    </div>
+                    <button class="btn btn-primary btn-add-location">Adicionar +</button>
                 </div>
             </div>
         `;

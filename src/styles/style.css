@@ -8,6 +8,7 @@
 
 /* 2. Componentes */
 @import url("components/button.css");
+@import url("components/card.css");
 
 /* 3. Estilos de páginas específicas */
 @import url("pages/index.css");
@@ -18,5 +19,5 @@
    width: 100%;
    max-width: 1200px;
    margin: 0 auto;
-   padding: var(--space-lg);
+   padding: var(--space-sm);
 }
