@@ -303,3 +303,21 @@
         justify-content: flex-start;
     }
 }
+
+/* === BUTTON SEE SCRIPT === */
+
+.btn-see-script {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    z-index: 1100;
+    height: 60px;
+    width: 60px;
+
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-light);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow);
+}
