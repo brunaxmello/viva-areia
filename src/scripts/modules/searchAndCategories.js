@@ -11,7 +11,7 @@ const CATEGORY_ICONS = {
   Todas: "bi-grid-fill",
 };
 
-let activeCategories = [];
+let activeCategory = "Todas";
 let allLocations = [];
 
 const routesListContainer = document.getElementById("routes-list");
@@ -66,9 +66,7 @@ function renderCategories(categories) {
 
   const buttonsHTML = categories
     .map((category) => {
-      const isActive =
-        activeCategories.includes(category) ||
-        (category === "Todas" && activeCategories.length === 0);
+      const isActive = category === activeCategory;
 
       const iconClass = CATEGORY_ICONS[category] || "bi-question-diamond-fill";
 
@@ -112,9 +110,9 @@ function applyFilters() {
   // 2. FILTRO DE CATEGORIA
   let finalFilteredList = filteredBySearch;
 
-  if (activeCategories.length > 0) {
+  if (activeCategory !== "Todas") {
     finalFilteredList = filteredBySearch.filter((location) => {
-      return location.categorias.some((cat) => activeCategories.includes(cat));
+      return location.categorias.includes(activeCategory);
     });
   }
 
@@ -123,15 +121,10 @@ function applyFilters() {
 
 // LÓGICA DE CLIQUE NAS CATEGORIAS
 function handleCategoryClick(category) {
-  if (category === "Todas") {
-    activeCategories = [];
+  if (category === activeCategory) {
+    activeCategory = "Todas";
   } else {
-    const index = activeCategories.indexOf(category);
-    if (index > -1) {
-      activeCategories.splice(index, 1);
-    } else {
-      activeCategories.push(category);
-    }
+    activeCategory = category;
   }
 
   renderCategories(getUniqueCategories(allLocations));
