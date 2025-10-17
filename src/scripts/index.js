@@ -16,14 +16,26 @@ exploreButton.addEventListener("click", () => {
   }
 });
 
-/* === SEARCH BAR === */
+/* === SEARCH BAR END CATEGORIES === */
 
+const CATEGORY_ICONS = {
+  gastronomia: "bi-fork-knife",
+  natureza: "bi-tree-fill",
+  historia: "bi-book-fill",
+  engenhos: "bi-house-door-fill",
+  cultura: "bi-camera-reels-fill",
+
+  // Ícone para a opção padrão
+  Todas: "bi-grid-fill",
+};
+let activeCategories = [];
 let allLocations = [];
 const routesListContainer = document.getElementById("routes-list");
 const searchInput = document.getElementById("search-input");
 const searchForm = document.querySelector(".search-box");
+const categoriesContainer = document.querySelector(".categories");
 
-// 1. RENDERIZAR LOCAIS NA TELA
+// RENDERIZAR LOCAIS NA TELA
 function renderLocations(locations) {
   routesListContainer.innerHTML = "";
 
@@ -53,30 +65,25 @@ function renderLocations(locations) {
   });
 }
 
-// 2. LÓGICA DE FILTRAGEM
+// LÓGICA DE FILTRAGEM DA BARRA DE PESQUISA E CATEGORIAS
 function applyFilters() {
   const searchTerm = searchInput.value;
-
-  if (allLocations.length === 0) {
-    console.warn("Dados ainda não carregados. allLocations está vazia.");
-    return [];
-  }
   const normalizedTerm = searchTerm.toLowerCase().trim();
 
-  if (normalizedTerm === "") {
-    return allLocations;
+  // 1. FILTRO DE BUSCA
+  let filteredBySearch = allLocations;
+
+  if (normalizedTerm !== "") {
+    filteredBySearch = allLocations.filter((location) => {
+      const nameMatch = location.nome.toLowerCase().includes(normalizedTerm);
+      const descriptionMatch = location.descricao
+        .toLowerCase()
+        .includes(normalizedTerm);
+      return nameMatch || descriptionMatch;
+    });
   }
 
-  // Filtra pelo termo de busca
-  const filteredBySearch = allLocations.filter((location) => {
-    const nameMatch = location.nome.toLowerCase().includes(normalizedTerm);
-    const descriptionMatch = location.descricao
-      .toLowerCase()
-      .includes(normalizedTerm);
-    return nameMatch || descriptionMatch;
-  });
-
-  // Filtra pelas Categorias Ativas
+  // 2. FILTRO DE CATEGORIA
   let finalFilteredList = filteredBySearch;
 
   if (activeCategories.length > 0) {
@@ -88,7 +95,7 @@ function applyFilters() {
   renderLocations(finalFilteredList);
 }
 
-// 3. CARREGAR DADOS E INICIAR A APLICAÇÃO
+// CARREGAR DADOS E INICIAR A APLICAÇÃO
 async function fetchAndInitialize() {
   try {
     const response = await fetch("src/data/locations.json");
@@ -108,45 +115,7 @@ async function fetchAndInitialize() {
   }
 }
 
-// 4. CONFIGURAÇÃO DE EVENTOS
-document.addEventListener("DOMContentLoaded", () => {
-
-
-  fetchAndInitialize();
-
-  searchInput.addEventListener("input", (event) => {
-    applyFilters();
-  });
-
-  searchForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-  });
-
-  categoriesContainer.addEventListener("click", (event) => {
-    const button = event.target.closest(".btn-category");
-    if (button) {
-      const category = button.dataset.category;
-      handleCategoryClick(category);
-    }
-  });
-});
-
-/* === CATEGORIES FILTERING === */
-
-const CATEGORY_ICONS = {
-  gastronomia: "bi-fork-knife",
-  natureza: "bi-tree-fill",
-  historia: "bi-book-fill",
-  engenhos: "bi-house-door-fill",
-  cultura: "bi-camera-reels-fill",
-
-  // Ícone para a opção padrão
-  Todas: "bi-grid-fill",
-};
-let activeCategories = [];
-const categoriesContainer = document.querySelector(".categories");
-
-// 1. OBTEM AS CATEGORIAS DO JSON
+// OBTEM AS CATEGORIAS DO JSON
 function getUniqueCategories(locations) {
   const categoriesSet = new Set();
   locations.forEach((location) => {
@@ -157,7 +126,7 @@ function getUniqueCategories(locations) {
   return ["Todas", ...Array.from(categoriesSet).sort()];
 }
 
-// 2. RENDERIZA AS CATEGORIAS NA TELA
+// RENDERIZA AS CATEGORIAS NA TELA
 function renderCategories(categories) {
   categoriesContainer.innerHTML = "";
 
@@ -188,7 +157,7 @@ function renderCategories(categories) {
   categoriesContainer.innerHTML = buttonsHTML;
 }
 
-// 3. LÓGICA DE CLIQUE NAS CATEGORIAS
+// LÓGICA DE CLIQUE NAS CATEGORIAS
 function handleCategoryClick(category) {
   if (category === "Todas") {
     activeCategories = [];
@@ -206,4 +175,23 @@ function handleCategoryClick(category) {
   applyFilters();
 }
 
-console.log(document.querySelector(".title-section-explore"));
+// CONFIGURAÇÃO DE EVENTOS
+document.addEventListener("DOMContentLoaded", () => {
+  fetchAndInitialize();
+
+  searchInput.addEventListener("input", (event) => {
+    applyFilters();
+  });
+
+  searchForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+  });
+
+  categoriesContainer.addEventListener("click", (event) => {
+    const button = event.target.closest(".btn-category");
+    if (button) {
+      const category = button.dataset.category;
+      handleCategoryClick(category);
+    }
+  });
+});
