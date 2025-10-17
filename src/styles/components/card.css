@@ -1,13 +1,14 @@
 .card-location {
     border-radius: var(--radius-lg);
-    margin: var(--space-xs) 0;
     position: relative;
     height: auto;
+    width: 100%;
+    height: 250px;
 }
 
 .image-card-location {
     width: 100%;
-    height: 220px;
+    height: 250px;
 }
 
 .card-location img {
@@ -68,5 +69,28 @@
         width: 100%;
         min-height: auto;
         margin-bottom: var(--space-xs);
+    }
+}
+
+@media (min-width: 425px) {
+    .tourist-attractions-grid {
+        justify-content: flex-start;
+    }
+
+    /* Configuração para 2 cartões por linha */
+    .card-location {
+        /* Calcula a largura para 2 cartões, subtraindo o gap */
+        /* calc((100% - N * gap) / N) */
+        width: calc(50% - var(--space-xs) / 2);
+    }
+}
+
+@media (min-width: 992px) {
+
+    /* Configuração para 3 cartões por linha */
+    .card-location {
+        /* Calcula a largura para 3 cartões, subtraindo 2x o gap */
+        /* Temos 2 gaps entre 3 itens, totalizando 2*var(--space-xs) de espaço ocupado pelo gap */
+        width: calc(33.333% - (2 * var(--space-xs) / 3));
     }
 }

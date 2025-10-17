@@ -6,7 +6,7 @@
     /* Cores principais de identidade */
     --primary-color: #294727; 
     --secondary-color: #BD632F; 
-    --accent-color: #0011ff; /* destaques, links, botões */
+    --accent-color: #B5EAB2; /* destaques, links, botões */
     --muted-color: #999999; /* elementos desabilitados ou menos destacados */
     --success-color: #5deb5d; /* sucesso */
     --warning-color: #ffcc00; /* aviso */
@@ -15,19 +15,19 @@
     /* Cores de bordas */
     --border-dark: #294727; 
     --border-light: #BD632F; 
-    --border-focus: #0011ff;
+    --border-focus: #B5EAB2;
   
     /* Cores de texto */
     --text-dark: #232323; 
     --text-light: #FFFFFF; 
-    --text-accent: #002EFD;
+    --text-accent: #B5EAB2;
     --text-muted: #999999; 
     --text-success: #5deb5d; 
   
     /* Cores de fundo */
     --bg-light: #F6F6F6;
     --bg-dark: #294727;
-    --bg-accent: #002EFD; 
+    --bg-accent: #B5EAB2; 
     --bg-muted: #999999; 
     --bg-success: #BFFFBF;
   
