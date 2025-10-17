@@ -98,9 +98,9 @@
 .main-header-content {
     display: grid;
     grid-template-columns: 1fr auto;
-    grid-template-areas: 
-    "logo-img-header header-link"
-    "search-box search-box";
+    grid-template-areas:
+        "logo-img-header header-link"
+        "search-box search-box";
     align-items: center;
     gap: var(--space-lg);
 
@@ -212,7 +212,6 @@
     }
 
 }
-
 
 /* === EXPLORE CONTENT === */
 
