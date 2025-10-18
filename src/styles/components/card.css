@@ -89,7 +89,7 @@
     .card-location {
         /* Calcula a largura para 2 cartões, subtraindo o gap */
         /* calc((100% - N * gap) / N) */
-        width: calc(50% - var(--space-xs) / 2);
+        width: calc(50% - var(--space-sm) / 2);
     }
 }
 
@@ -99,6 +99,6 @@
     .card-location {
         /* Calcula a largura para 3 cartões, subtraindo 2x o gap */
         /* Temos 2 gaps entre 3 itens, totalizando 2*var(--space-xs) de espaço ocupado pelo gap */
-        width: calc(33.333% - (2 * var(--space-xs) / 3));
+        width: calc(33.333% - (2 * var(--space-sm) / 3));
     }
 }
