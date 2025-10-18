@@ -87,7 +87,7 @@ function handleNavigateClick() {
   //   return;
   // }
 
-  window.location.href = "/src/pages/selected-routes.html";
+  window.location.href = "./src/pages/selected-routes.html";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
