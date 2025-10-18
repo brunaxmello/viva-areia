@@ -319,5 +319,13 @@
     font-size: var(--text-lg);
     font-weight: var(--font-weight-light);
     border-radius: var(--radius-full);
-    box-shadow: var(--shadow);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.6);
+}
+
+@media (min-width: 768px) {
+
+    .btn-see-script {
+        right: 30px;
+        bottom: 30px;
+    }
 }
