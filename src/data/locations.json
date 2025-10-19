@@ -23,7 +23,7 @@
     "visita": {
       "tipo": "Gratuita"
     },
-    "imagem": "/src/images/images-locations/engenho-triunfo.png",
+    "imagem": "./src/images/images-locations/engenho-triunfo.png",
     "mapa": {
       "latitude": -6.975146811230601,
       "longitude": 35.69479604405134,
@@ -55,7 +55,7 @@
     "visita": {
       "tipo": "Paga"
     },
-    "imagem": "/src/images/images-locations/mata-pau-ferro-de-longe.png",
+    "imagem": "src/images/images-locations/mata-pau-ferro-de-longe.png",
     "mapa": {
       "latitude": -6.969103921713629,
       "longitude": -35.741384365597604,
