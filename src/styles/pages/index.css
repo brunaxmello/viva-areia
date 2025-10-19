@@ -89,65 +89,6 @@
 
 }
 
-/* === HEADER === */
-
-.main-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: var(--bg-light);
-    z-index: 1000;
-}
-
-.main-header.container {
-    padding-bottom: var(--space-sm);
-}
-
-.main-header-content {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-        "logo-img-header header-link"
-        "search-box search-box";
-    align-items: center;
-    gap: var(--space-lg);
-
-}
-
-.logo-img-header {
-    width: 90px;
-    max-width: 90px;
-    height: auto;
-
-    grid-area: logo-img-header;
-}
-
-.header-link {
-    grid-area: header-link;
-    text-align: right;
-    width: 100%;
-    align-self: center;
-    color: var(--text-muted)
-}
-
-@media (min-width: 768px) {
-
-    .main-header-content {
-        grid-template-columns: 1fr 1fr auto;
-        grid-template-areas: "logo-img-header search-box header-link";
-        gap: var(--space-sm);
-    }
-
-}
-
-@media (max-width: 375px) {
-    .main-header {
-        font-size: var(--text-sm);
-    }
-
-}
-
 /* === BARRA DE PESQUISA === */
 
 .sr-only {
