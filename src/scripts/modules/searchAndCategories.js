@@ -2,6 +2,7 @@
 
 import { getLocationsData } from "./dataManager.js";
 import { renderLocations } from "./renderCardList.js";
+import { updateAllCardButtons } from "../modules/renderCardList.js"; // Função para atualizar o estado dos botões dos cards
 
 const CATEGORY_ICONS = {
   gastronomia: "bi-fork-knife",
@@ -13,7 +14,6 @@ const CATEGORY_ICONS = {
   // Ícone para a opção padrão
   Todas: "bi-grid-fill",
 };
-const locationsListContainer = document.getElementById("locations-list");
 const searchInput = document.getElementById("search-input");
 const searchForm = document.querySelector(".search-box");
 const categoriesContainer = document.querySelector(".categories");
@@ -52,7 +52,6 @@ function renderCategories(categories) {
                     <span class="category-name">${
                       category.charAt(0).toUpperCase() + category.slice(1)
                     }</span>
-                </div>
             </button>
         `;
     })
@@ -89,6 +88,8 @@ function applyFilters() {
   }
 
   renderLocations(finalFilteredList);
+
+  updateAllCardButtons();
 }
 
 // LÓGICA DE CLIQUE NAS CATEGORIAS

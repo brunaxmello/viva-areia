@@ -16,15 +16,16 @@ function saveLocations(locations) {
 // Verifica se um local está na lista de selecionados
 export function isLocationSelected(locationId) {
   const locations = getSelectedLocations();
-  return locations.includes(locationId);
+  return locations.includes(locationId.toString());
 }
 
 // Adiciona um local à lista de selecionados
 export function addLocation(locationId) {
+  const idAsString = locationId.toString();
   let locations = getSelectedLocations();
 
-  if (!locations.includes(locationId)) {
-    locations.push(locationId);
+  if (!locations.includes(idAsString)) {
+    locations.push(idAsString);
     saveLocations(locations);
     return true;
   }
@@ -34,8 +35,9 @@ export function addLocation(locationId) {
 
 // Remove um local da lista de selecionados
 export function removeLocation(locationId) {
+  const idAsString = locationId.toString();
   let locations = getSelectedLocations();
-  const index = locations.indexOf(locationId);
+  const index = locations.indexOf(idAsString);
 
   if (index > -1) {
     locations.splice(index, 1);

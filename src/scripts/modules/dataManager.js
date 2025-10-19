@@ -1,7 +1,8 @@
-// MÓDULO DE DADOS: responsável por buscar, armazenar e fornecer os dados crus.
+// MÓDULO DE DADOS: responsável por buscar, armazenar e fornecer os dados do JSON.
 
 let allLocations = [];
 
+// Carrega os dados das localizações a partir do arquivo JSON
 async function loadLocationsData() {
   try {
     const response = await fetch("/src/data/locations.json");
@@ -14,7 +15,7 @@ async function loadLocationsData() {
   }
 }
 
-// Exporta a função para obter os dados das localizações
+// Função para obter os dados das localizações
 export async function getLocationsData() {
     if (allLocations.length === 0) {
         await loadLocationsData();
@@ -23,7 +24,7 @@ export async function getLocationsData() {
     return [...allLocations]; 
 }
 
-// Função para obter os dados completos do local pelo ID
+//  Função para obter os dados completos do local pelo ID
 export async function getLocationDataById(locationId) {
 
   // Garante que os dados estejam carregados 
