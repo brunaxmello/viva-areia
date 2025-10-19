@@ -1,4 +1,4 @@
-// Armazenar a lista no localStorage para que a página home e selected-routes possa acessar quais locais foram escolhidos ou removidos.
+// MÓDULO DE ESTADO: Gerencia a persistência dos locais selecionados do usuário (IDs) via localStorage.
 
 const STORAGE_KEY = "vivaAreiaSelectedLocations";
 
@@ -26,7 +26,6 @@ export function addLocation(locationId) {
   if (!locations.includes(locationId)) {
     locations.push(locationId);
     saveLocations(locations);
-    console.log(`Local ${locationId} adicionado.`);
     return true;
   }
 
@@ -41,7 +40,6 @@ export function removeLocation(locationId) {
   if (index > -1) {
     locations.splice(index, 1);
     saveLocations(locations);
-    console.log(`Local ${locationId} removido.`);
     return true;
   }
 

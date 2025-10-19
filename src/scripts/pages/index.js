@@ -1,6 +1,8 @@
-import { initWelcomeScreen } from "../modules/welcomeScreen.js";
-import { initSearchAndCategories } from "../modules/searchAndCategories.js";
-import { getSelectedLocations } from "../modules/selectedLocationsManager.js";
+// JS específico para a página inicial. Inicializa a página principal, ativando a busca, categorias e tela de boas-vindas.
+
+import { initWelcomeScreen } from "../modules/welcomeScreen.js"; // Função para inicializar a tela de boas-vindas no mobile ou no desktop
+import { initSearchAndCategories } from "../modules/searchAndCategories.js"; // Função para inicializar a busca, filtros e listagem de locais
+import { getSelectedLocations } from "../modules/selectedLocationsManager.js"; // Função para obter os locais selecionados
 
 const navigateButton = document.querySelector(".btn-see-script");
 

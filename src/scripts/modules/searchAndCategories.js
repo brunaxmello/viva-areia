@@ -1,4 +1,5 @@
-/* === SEARCH BAR END CATEGORIES === */
+// MÓDULO DE LÓGICA: Gerencia o estado dos filtros (pesquisa e categorias), usando o dataManager e o renderCardList.
+
 import { getLocationsData } from "./dataManager.js";
 import { renderLocations } from "./renderCardList.js";
 

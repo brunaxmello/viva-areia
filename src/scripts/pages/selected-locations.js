@@ -1,32 +1,27 @@
-import { getLocationsData } from '../modules/dataManager.js';
-import { getSelectedLocations, removeLocation } from '../modules/selectedLocationsManager.js';
-import { renderLocations } from '../modules/renderCardList.js';
+// JS específico para a página de rotas selecionadas. Inicializa a página, filtrando e exibindo apenas os locais salvos no localStorage.
 
-const routesListContainer = document.getElementById("routes-list");
+import { getLocationsData } from '../modules/dataManager.js'; // Função para obter os dados completos das localizações
+import { getSelectedLocations, removeLocation } from '../modules/selectedLocationsManager.js'; // Funções para gerenciar os locais selecionados
+import { renderLocations } from '../modules/renderCardList.js'; // Função para listar os locais (é usada tanto no home como no selected-locations)
 
-/**
- * Filtra os locais e renderiza apenas os selecionados pelo usuário.
- */
-async function initSelectedRoutesPage() {
-    // 1. Carrega todos os dados
+const locationsListContainer = document.getElementById("locations-list");
+
+
+// Filtra os locais e renderiza apenas os selecionados pelo usuário.
+async function initSelectedLocationsPage() {
+
     const allLocations = await getLocationsData(); 
     
-    // 2. Obtém os IDs salvos
     const selectedIds = getSelectedLocations(); 
 
-    // 3. Filtra a lista
     const selectedLocations = allLocations.filter(location => {
-        // Garante que a comparação seja consistente (ex: string vs string)
         return selectedIds.includes(location.id.toString()); 
     });
 
-    // 4. Renderiza a lista filtrada (reutiliza o renderizador)
-    renderLocations(selectedLocations);
+    renderLocations(selectedLocations, true);
 }
 
-/**
- * Lógica de remoção de item na própria página de rotas selecionadas.
- */
+// Lógica de remoção de item na própria página de rotas selecionadas.
 async function handleRemoveClick(event) {
     const button = event.target.closest(".btn-card");
     if (button) {
@@ -36,17 +31,17 @@ async function handleRemoveClick(event) {
         removeLocation(locationId);
         
         // 2. Re-renderiza a página para refletir a remoção
-        initSelectedRoutesPage(); 
+        initSelectedLocationsPage(); 
     }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    initSelectedRoutesPage();
+    initSelectedLocationsPage();
     
     // Adiciona listener para remover locais da lista
-    if (routesListContainer) {
+    if (locationsListContainer) {
         // [AJUSTE]: O listener deve ser ASYNC
-        routesListContainer.addEventListener('click', async (event) => {
+        locationsListContainer.addEventListener('click', async (event) => {
             await handleRemoveClick(event);
         });
     }

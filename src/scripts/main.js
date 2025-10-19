@@ -1,12 +1,14 @@
-import { getLocationDataById } from "./modules/dataManager.js";
-import { openLocationModal } from "./modules/locationModal.js";
+// JS usado tanto em home quanto em selected-routes
+
+import { getLocationDataById } from "./modules/dataManager.js"; // Função para obter dados do local pelo ID
+import { openLocationModal } from "./modules/locationModal.js"; // Função para abrir o modal de detalhes do local 
 import {
   addLocation,
   removeLocation,
   isLocationSelected
-} from "./modules/selectedLocationsManager.js";
+} from "./modules/selectedLocationsManager.js"; // Funções para gerenciar locais selecionados
 
-const locationsListContainer = document.getElementById("locations-list");
+const locationsListContainer = document.getElementById("locations-list"); // Container que envolve os cards de localizações tanto em home quanto em selected-routes
 
 // Função que troca o texto e a aparência do botão do card
 function toggleCardButton(buttonElement, isAdded) {
@@ -31,7 +33,7 @@ function updateAllCardButtons() {
 }
 
 // Função para lidar com o clique no card/botão
-function handleCardClick(event) {
+async function handleCardClick(event) {
   const addButton = event.target.closest(".btn-card");
   const card = event.target.closest(".card-location");
 
@@ -42,6 +44,8 @@ function handleCardClick(event) {
   const locationId = card.dataset.locationId;
 
   if (addButton) {
+    // Clicou no botão de adicionar/remover
+
     event.stopPropagation();
     let isAdded = isLocationSelected(locationId);
     let actionSuccessful;
@@ -61,7 +65,9 @@ function handleCardClick(event) {
       toggleCardButton(addButton, isAdded);
     }
   } else {
-    const locationData = getLocationDataById(locationId);
+    // Clicou no card (fora do botão), abre o modal de detalhes
+
+    const locationData = await getLocationDataById(locationId);
 
     if (locationData) {
       openLocationModal(locationData);

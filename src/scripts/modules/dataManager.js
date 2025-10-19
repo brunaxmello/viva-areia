@@ -1,8 +1,6 @@
-// Este módulo se concentra unicamente em buscar e armazenar os dados crus.
+// MÓDULO DE DADOS: responsável por buscar, armazenar e fornecer os dados crus.
 
 let allLocations = [];
-
-const locationsListContainer = document.getElementById("locations-list");
 
 async function loadLocationsData() {
   try {
@@ -13,10 +11,6 @@ async function loadLocationsData() {
     allLocations = await response.json();
   } catch (error) {
     console.error("Erro ao carregar os dados das localizações:", error);
-    if (locationsListContainer) {
-      locationsListContainer.innerHTML =
-        '<p class="message-error">Não foi possível carregar os locais turísticos no momento. Tente novamente mais tarde.</p>';
-    }
   }
 }
 

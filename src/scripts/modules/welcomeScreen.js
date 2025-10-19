@@ -1,4 +1,4 @@
-/* === WELCOME SCREEN === */
+// MÓDULO UI: Controla o comportamento e a transição da tela de boas-vindas no modo mobile.
 
 export function initWelcomeScreen() {
   const exploreButton = document.getElementById("explore-button");
