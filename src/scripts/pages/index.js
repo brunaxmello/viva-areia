@@ -4,7 +4,7 @@ import {
   allLocations,
 } from "../modules/searchAndCategories.js";
 // import { openLocationModal } from "../modules/locationModal.js";
-// import { addRoute, removeRoute, isRouteSelected } from "../modules/selectedRoutesManager.js";
+import { addLocation, removeLocation, isLocationSelected, getSelectedLocations } from "../modules/selectedLocationsManager.js";
 
 const routesListContainer = document.getElementById("routes-list");
 
@@ -12,7 +12,7 @@ const routesListContainer = document.getElementById("routes-list");
 function toggleCardButton(buttonElement, isAdded) {
   if (isAdded) {
     // Estado: Já adicionado
-    buttonElement.textContent = "Remover";
+    buttonElement.innerHTML = 'Remover <i class="bi bi-dash-lg"></i>';
     buttonElement.classList.add("btn-remove-location");
   } else {
     // Estado: Padrão (Adicionar)
@@ -25,7 +25,7 @@ function toggleCardButton(buttonElement, isAdded) {
 function updateAllCardButtons() {
   document.querySelectorAll(".btn-card").forEach((button) => {
     const locationId = button.dataset.locationId;
-    const isSelected = isRouteSelected(locationId);
+    const isSelected = isLocationSelected(locationId);
     toggleCardButton(button, isSelected);
   });
 }
@@ -49,16 +49,16 @@ function handleCardClick(event) {
 
   if (addButton) {
     event.stopPropagation();
-    let isAdded = isRouteSelected(locationId);
+    let isAdded = isLocationSelected(locationId);
     let actionSuccessful;
 
     if (isAdded) {
       // Se já foi adicionado, remove
-      actionSuccessful = removeRoute(locationId);
+      actionSuccessful = removeLocation(locationId);
       isAdded = false;
     } else {
       // Se não foi adicionado, adiciona
-      actionSuccessful = addRoute(locationId);
+      actionSuccessful = addLocation(locationId);
       isAdded = true;
     }
 
@@ -79,13 +79,12 @@ function handleCardClick(event) {
 
 const navigateButton = document.querySelector(".btn-see-script");
 function handleNavigateClick() {
-  // const count = getSelectedRoutes().length;
+  const count = getSelectedLocations().length;
 
-  // if (count !== 0) {
-  //   // [UX] Se a lista estiver vazia, pode ser bom dar um aviso
-  //   alert("Adicione pelo menos um ponto turístico ao seu roteiro!");
-  //   return;
-  // }
+  if (count === 0) {
+    alert("Adicione pelo menos um ponto turístico ao seu roteiro!");
+    return;
+  }
 
   window.location.href = "./src/pages/selected-routes.html";
 }
