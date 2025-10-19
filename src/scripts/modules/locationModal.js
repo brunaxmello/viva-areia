@@ -2,7 +2,8 @@
 // Deve ser reutilizável em ambos os contextos.
 
 export function openLocationModal(locationData) {
-    // Teste
-    alert(`Testando detalhes do local:\n\nNome: ${locationData.nome}`);
-    // Aqui você pode adicionar a lógica para abrir o modal com os detalhes do local
+  // Teste
+  console.log(locationData);
+  alert(`Testando detalhes do local:\n\nNome: ${locationData.nome}`);
+  // Aqui você pode adicionar a lógica para abrir o modal com os detalhes do local
 }

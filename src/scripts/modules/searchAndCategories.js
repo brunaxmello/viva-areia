@@ -1,4 +1,6 @@
 /* === SEARCH BAR END CATEGORIES === */
+import { getLocationsData } from "./dataManager.js";
+import { renderLocations } from "./renderCardList.js";
 
 const CATEGORY_ICONS = {
   gastronomia: "bi-fork-knife",
@@ -10,44 +12,13 @@ const CATEGORY_ICONS = {
   // Ícone para a opção padrão
   Todas: "bi-grid-fill",
 };
-
-let activeCategory = "Todas";
-export let allLocations = [];
-
-const routesListContainer = document.getElementById("routes-list");
+const locationsListContainer = document.getElementById("locations-list");
 const searchInput = document.getElementById("search-input");
 const searchForm = document.querySelector(".search-box");
 const categoriesContainer = document.querySelector(".categories");
 
-// RENDERIZAR LOCAIS NA TELA
-function renderLocations(locations) {
-  routesListContainer.innerHTML = "";
-
-  if (locations.length === 0) {
-    routesListContainer.innerHTML = `<p class="message-info">Nenhum local encontrado para sua pesquisa.</p>`;
-    return;
-  }
-
-  locations.forEach((location) => {
-    const cardHTML = `
-            <div class="card-location" data-location-id="${location.id}">
-                <div class="image-card-location">
-                    <img loading="lazy" src="${
-                      location.imagem
-                    }" alt="Imagem de ${location.nome}">
-                </div>
-                <div class="card-info">
-                    <div class="card-info-content">
-                        <h3>${location.nome}</h3>
-                        <p>${location.descricao.substring(0, 80)}...</p>
-                    </div>
-                    <button class="btn btn-primary btn-card" data-location-id="${location.id}">Adicionar <i class="bi bi-plus-lg"></i></button>
-                </div>
-            </div>
-        `;
-    routesListContainer.innerHTML += cardHTML;
-  });
-}
+let activeCategory = "Todas";
+let allLocations = [];
 
 // OBTEM AS CATEGORIAS DO JSON
 function getUniqueCategories(locations) {
@@ -132,21 +103,12 @@ function handleCategoryClick(category) {
   applyFilters();
 }
 
-// CARREGAR DADOS E INICIAR A APLICAÇÃO
+// INICIALIZAÇÃO DO MÓDULO
 export async function initSearchAndCategories() {
-  try {
-    const response = await fetch("/src/data/locations.json");
-    if (!response.ok) {
-      throw new Error("Erro ao carregar o arquivo JSON: " + response.status);
-    }
-    allLocations = await response.json();
-    renderLocations(allLocations);
-    renderCategories(getUniqueCategories(allLocations));
-  } catch (error) {
-    console.error("Erro ao carregar os dados das localizações:", error);
-    routesListContainer.innerHTML =
-      '<p class="message-error">Não foi possível carregar os locais turísticos no momento. Tente novamente mais tarde.</p>';
-  }
+  allLocations = await getLocationsData();
+
+  renderLocations(allLocations);
+  renderCategories(getUniqueCategories(allLocations));
 
   searchInput.addEventListener("input", (event) => {
     applyFilters();

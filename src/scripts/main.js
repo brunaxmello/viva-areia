@@ -1,12 +1,12 @@
-import {
-  initSearchAndCategories,
-  allLocations,
-} from "./modules/searchAndCategories.js";
+import { getLocationDataById } from "./modules/dataManager.js";
 import { openLocationModal } from "./modules/locationModal.js";
-import { addLocation, removeLocation, isLocationSelected, getSelectedLocations } from "./modules/selectedLocationsManager.js";
+import {
+  addLocation,
+  removeLocation,
+  isLocationSelected
+} from "./modules/selectedLocationsManager.js";
 
-const routesListContainer = document.getElementById("routes-list");
-const navigateButton = document.querySelector(".btn-see-script");
+const locationsListContainer = document.getElementById("locations-list");
 
 // Função que troca o texto e a aparência do botão do card
 function toggleCardButton(buttonElement, isAdded) {
@@ -28,12 +28,6 @@ function updateAllCardButtons() {
     const isSelected = isLocationSelected(locationId);
     toggleCardButton(button, isSelected);
   });
-}
-
-// Função para obter os dados completos do local pelo ID
-function getLocationDataById(locationId) {
-  // Busca na lista completa de locais carregados
-  return allLocations.find((loc) => loc.id.toString() === locationId);
 }
 
 // Função para lidar com o clique no card/botão
@@ -77,31 +71,13 @@ function handleCardClick(event) {
   }
 }
 
-// Função para ir ao roteiro com os locais selecionados
-function handleNavigateClick() {
-  const count = getSelectedLocations().length;
-
-  if (count === 0) {
-    alert("Adicione pelo menos um ponto turístico ao seu roteiro!");
-    return;
-  }
-
-  window.location.href = "./src/pages/selected-routes.html";
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-
-  initSearchAndCategories();
 
   setTimeout(updateAllCardButtons, 100);
 
   // Listener para os cards de localizações
-  if (routesListContainer) {
-    routesListContainer.addEventListener("click", handleCardClick);
+  if (locationsListContainer) {
+    locationsListContainer.addEventListener("click", handleCardClick);
   }
 
-  // Listener para o botão fixo
-  if (navigateButton) {
-    navigateButton.addEventListener("click", handleNavigateClick);
-  }
 });
