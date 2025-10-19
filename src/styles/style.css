@@ -9,9 +9,11 @@
 /* 2. Componentes */
 @import url("components/button.css");
 @import url("components/card.css");
+@import url("components/locationModal.css");
 
 /* 3. Estilos de páginas específicas */
 @import url("pages/index.css");
+@import url("pages/selected-routes.css");
 
 /* ESTILOS GERAIS DO PROJETO */
 

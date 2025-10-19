@@ -3,7 +3,7 @@ import {
   initSearchAndCategories,
   allLocations,
 } from "../modules/searchAndCategories.js";
-// import { openLocationModal } from "../modules/locationModal.js";
+import { openLocationModal } from "../modules/locationModal.js";
 import { addLocation, removeLocation, isLocationSelected, getSelectedLocations } from "../modules/selectedLocationsManager.js";
 
 const routesListContainer = document.getElementById("routes-list");
