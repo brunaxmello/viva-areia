@@ -5,7 +5,7 @@ let allLocations = [];
 // Carrega os dados das localizações a partir do arquivo JSON
 async function loadLocationsData() {
   try {
-    const response = await fetch("/src/data/locations.json");
+    const response = await fetch("src/data/locations.json");
     if (!response.ok) {
       throw new Error("Erro ao carregar o arquivo JSON: " + response.status);
     }
