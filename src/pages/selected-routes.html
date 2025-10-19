@@ -39,10 +39,27 @@
 <body>
 
     <div class="container">
-        <!-- Todo o código aqui -->
+        <header class="main-header container">
+            <div class="main-header-content">
+                <a href="#"><img class="logo-img-header" src="../images/logo-viva-areia.png"
+                        alt="Logo com os dizeres viva areia e ao lago a imagem de uma cana-de-açúcar"></a>
+                <a class="header-link" href="https://maps.app.goo.gl/cmG8UoEpCYsf1u656" target="_blank"><i
+                        class="bi bi-geo-alt-fill"></i> Areia, Paraíba</a>
+
+            </div>
+
+        </header>
+
+        <div class="explore-content">
+            <h2 class="title-section-explore">Categorias</h2>
+            <section class="categories"></section>
+            <h2 class="title-section-explore">Pontos turísticos</h2>
+            <section id="routes-list" class="tourist-attractions-grid"></section>
+        </div>
     </div>
 
     <!-- Importação do JS específico da página -->
+    <script type="module" src="../scripts/main.js"></script>
     <script type="module" src="../scripts/pages/selected-routes.js"></script>
 
 </body>
