@@ -25,7 +25,7 @@ async function handleNavigateClick() {
     return;
   }
 
-  window.location.href = "./src/pages/selected-locations.html";
+  window.location.href = "./selected-locations.html";
 }
 
 // Função para lidar com o clique no card/botão
