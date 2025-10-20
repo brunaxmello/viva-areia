@@ -93,3 +93,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     navigateButton.addEventListener("click", handleNavigateClick);
   }
 });
+
+window.addEventListener('pageshow', (event) => {
+    // A propriedade persisted indica se a página foi restaurada do cache do navegador (back/forward)
+    if (event.persisted) {
+        console.log("Página restaurada do cache. Sincronizando estado dos botões...");
+        // Força a verificação do localStorage e atualiza os botões visuais (Adicionar/Remover)
+        updateAllCardButtons();
+    }
+});
