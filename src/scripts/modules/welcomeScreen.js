@@ -9,8 +9,6 @@ export function initWelcomeScreen() {
   exploreButton.addEventListener("click", () => {
     if (desktopBreakpoint.matches) {
       mainView.scrollIntoView({ behavior: "smooth" });
-      console.log("clicou");
-      console.log(mainView);
     } else {
       welcomeScreen.style.display = "none";
       mainView.style.display = "block";
