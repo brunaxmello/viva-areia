@@ -12,6 +12,10 @@ import {
   isLocationSelected
 } from "../modules/selectedLocationsManager.js"; // Funções para gerenciar locais selecionados
 import { toggleCardButton } from "../modules/renderCardList.js"; // Função para atualizar o botão do card
+import { GOOGLE_MAPS_API_KEY } from "../../config/config.js";
+import { loadGoogleMaps } from "../utils/loadGoogleMaps.js";
+import { initMap } from "../modules/map/mapController.js";
+
 
 const locationsListContainer = document.getElementById("locations-list"); // Container que envolve os cards de localizações tanto em home quanto em selected-routes
 const navigateButton = document.querySelector(".btn-see-script");
