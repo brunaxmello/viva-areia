@@ -285,6 +285,12 @@
     text-align: center;
     line-height: 1;
     pointer-events: none;
+    display: none; /* Escondido por padrão */
+}
+
+/* Mostra o contador quando tiver a classe 'show' */
+.btn-counter.show {
+    display: block;
 }
 
 @media (min-width: 768px) {

@@ -16,6 +16,22 @@ import { toggleCardButton } from "../modules/renderCardList.js"; // Função par
 const locationsListContainer = document.getElementById("locations-list"); // Container que envolve os cards de localizações tanto em home quanto em selected-routes
 const navigateButton = document.querySelector(".btn-see-script");
 
+// Função para atualizar o contador de locais selecionados
+function updateLocationCounter() {
+  const counter = document.getElementById("location-counter");
+  if (!counter) return;
+  
+  const count = getSelectedLocations().length;
+  counter.textContent = count;
+  
+  // Mostra o contador apenas se houver locais selecionados
+  if (count > 0) {
+    counter.classList.add("show");
+  } else {
+    counter.classList.remove("show");
+  }
+}
+
 // Função para ir ao roteiro com os locais selecionados
 async function handleNavigateClick() {
   const count = getSelectedLocations().length;
@@ -59,6 +75,7 @@ async function handleCardClick(event) {
     // Se a ação foi bem-sucedida, atualiza o botão
     if (actionSuccessful) {
       toggleCardButton(addButton, isAdded);
+      updateLocationCounter(); // Atualiza o contador
     }
   } else {
     // Clicou no card (fora do botão), abre o modal de detalhes
@@ -88,6 +105,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Atualiza o estado dos botões dos cards
   updateAllCardButtons();
 
+  // Inicializa o contador de locais selecionados
+  updateLocationCounter();
+
   // Listener para o botão fixo
   if (navigateButton) {
     navigateButton.addEventListener("click", handleNavigateClick);
@@ -100,8 +120,7 @@ window.addEventListener('pageshow', (event) => {
         console.log("Página restaurada do cache. Sincronizando estado dos botões...");
         // Força a verificação do localStorage e atualiza os botões visuais (Adicionar/Remover)
         updateAllCardButtons();
+        // Atualiza o contador quando a página é restaurada
+        updateLocationCounter();
     }
 });
-
-
-
