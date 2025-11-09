@@ -230,6 +230,8 @@
     font-size: var(--text-sm);
 }
 
+
+
 /* === GRID DE PONTOS TURÍSTICOS === */
 
 .tourist-attractions-grid {
@@ -261,10 +263,31 @@
     font-weight: var(--font-weight-light);
     border-radius: var(--radius-full);
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.6);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+}
+
+.btn-counter {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 7px;
+    border-radius: 50%;
+    min-width: 20px;
+    text-align: center;
+    line-height: 1;
+    pointer-events: none;
 }
 
 @media (min-width: 768px) {
-
     .btn-see-script {
         right: 30px;
         bottom: 30px;

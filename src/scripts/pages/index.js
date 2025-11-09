@@ -102,3 +102,6 @@ window.addEventListener('pageshow', (event) => {
         updateAllCardButtons();
     }
 });
+
+
+
