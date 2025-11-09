@@ -1,5 +1,3 @@
-// JS específico para a página de rotas selecionadas. Inicializa a página, filtrando e exibindo apenas os locais salvos no localStorage.
-
 import {
   getLocationsData,
   getLocationDataById,
@@ -8,25 +6,38 @@ import {
   getSelectedLocations,
   removeLocation,
 } from "../modules/selectedLocationsManager.js"; // Funções para gerenciar os locais selecionados
-import { renderLocations } from "../modules/renderCardList.js"; // Função para listar os locais (é usada tanto no home como no selected-locations)
-import { openLocationModal } from "../modules/locationModal.js"; // Função para abrir o modal de detalhes do local (é usada tanto no home como no selected-locations)
+import { renderLocations } from "../modules/renderCardList.js"; // Função para listar os locais
+import { openLocationModal } from "../modules/locationModal.js"; // Função para abrir o modal de detalhes
+import { GOOGLE_MAPS_API_KEY } from "../config/config.js";
+import { loadGoogleMaps } from "../utils/loadGoogleMaps.js";
+import { initMap } from "../modules/mapController.js";
 
 const locationsListContainer = document.getElementById("locations-list");
+const startRouteButton = document.querySelector(".btn-see-script");
 
-// Filtra os locais e renderiza apenas os selecionados pelo usuário.
+let selectedLocationsData = [];
+
 async function initSelectedLocationsPage() {
   const allLocations = await getLocationsData();
-
   const selectedIds = getSelectedLocations();
 
-  const selectedLocations = allLocations.filter((location) => {
+  // Filtra os locais completos
+  selectedLocationsData = allLocations.filter((location) => {
     return selectedIds.includes(location.id.toString());
   });
 
-  renderLocations(selectedLocations, true);
+  // Renderiza os cards na tela
+  renderLocations(selectedLocationsData, true);
+
+  // Se não houver locais, mostra mensagem
+  if (selectedLocationsData.length === 0) {
+    locationsListContainer.innerHTML =
+      '<p class="message-info">Nenhum local selecionado no seu roteiro.</p>';
+    // Esconde o botão do mapa se não houver locais
+    if (startRouteButton) startRouteButton.style.display = "none";
+  }
 }
 
-// Gerencia os eventos de clique (remover e abrir modal) nos cards de localização no selected-locations.js.
 async function handlePageClick(event) {
   const button = event.target.closest(".btn-card");
   const cardElement = event.target.closest(".card-location");
@@ -38,24 +49,28 @@ async function handlePageClick(event) {
   const locationId = cardElement.dataset.locationId;
 
   if (button) {
-    event.stopPropagation(); // Evita que o clique no botão dispare outros eventos
+    // CLICOU NO BOTÃO 'REMOVER'
+    event.stopPropagation();
     const wasRemoved = removeLocation(locationId);
 
     if (wasRemoved) {
       cardElement.remove(); // Remove o card da interface
 
-      const remainingCards =
-        locationsListContainer.querySelectorAll(".card-location");
-      if (remainingCards.length === 0) {
+      // ATUALIZA A LISTA DE DADOS
+      selectedLocationsData = selectedLocationsData.filter(
+        (loc) => loc.id.toString() !== locationId
+      );
+
+      // Verifica se a lista está vazia
+      if (selectedLocationsData.length === 0) {
         locationsListContainer.innerHTML =
           '<p class="message-info">Nenhum local selecionado no seu roteiro.</p>';
+        if (startRouteButton) startRouteButton.style.display = "none";
       }
     }
   } else {
-    // Clicou no card (fora do botão), abre o modal de detalhes
-
+    // CLICOU NO CARD (FORA DO BOTÃO) -> ABRE O MODAL
     const locationData = await getLocationDataById(locationId);
-
     if (locationData) {
       openLocationModal(locationData);
     } else {
@@ -64,10 +79,41 @@ async function handlePageClick(event) {
   }
 }
 
+async function handleShowMapClick() {
+  if (!startRouteButton) return;
+
+  // Mostra um feedback de carregamento
+  startRouteButton.disabled = true;
+  startRouteButton.innerHTML = '<i class="bi bi-arrow-clockwise"></i>';
+
+  try {
+    // Carrega a API do Google Maps
+    const googleMaps = await loadGoogleMaps(GOOGLE_MAPS_API_KEY);
+    initMap(googleMaps, ".selected-locations-content", selectedLocationsData);
+
+    // Esconde o botão flutuante (pois o mapa está visível)
+    startRouteButton.style.display = "none";
+    
+    // O header ainda precisa ser visível, mas a lista de cards não
+    if (locationsListContainer) {
+      locationsListContainer.style.display = "none";
+    }
+
+  } catch (error) {
+    console.error("Erro ao carregar o mapa:", error);
+    alert("Não foi possível carregar o mapa. Tente novamente.");
+    startRouteButton.disabled = false;
+    startRouteButton.innerHTML = '<i class="bi bi-map"></i>';
+  }
+}
+
+// === INICIALIZAÇÃO ===
+
 document.addEventListener("DOMContentLoaded", () => {
+  // 1. Inicializa a lista de locais selecionados
   initSelectedLocationsPage();
 
-  // Adiciona listener para remover locais da lista
+  // 2. Adiciona listener para os cards (remover ou abrir modal)
   if (locationsListContainer) {
     locationsListContainer.addEventListener(
       "click",
@@ -76,5 +122,10 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       true
     );
+  }
+
+  // 3. Adiciona listener para o botão de iniciar rota (mapa)
+  if (startRouteButton) {
+    startRouteButton.addEventListener("click", handleShowMapClick);
   }
 });
