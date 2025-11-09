@@ -1,5 +1,7 @@
 // MÓDULO UI: Componente responsável por gerenciar a exibição, o conteúdo e o estado do Modal de detalhes do local.
 
+import { isLocationSelected } from "../modules/selectedLocationsManager.js"; // ✅ Import necessário para verificar seleção
+
 let modalOverlay = null;
 
 function initModal() {
@@ -50,11 +52,12 @@ function initModal() {
           </h3>
           <div class="modal-visit-badge"></div>
         </div>
-        
-        <a class="btn btn-primary modal-map-button" href="" target="_blank">
-          <i class="bi bi-geo-alt-fill"></i>
-          Ver no mapa
-        </a>
+
+        <!-- Botão de adicionar (NOVO) -->
+        <button class="btn btn-primary modal-add-button">
+          Adicionar <i class="bi bi-plus-lg"></i>
+        </button>
+
       </div>
     </div>
   `;
@@ -206,10 +209,19 @@ export function openLocationModal(locationData) {
     `;
   }
 
-  // Link do mapa
-  const mapButton = modal.querySelector(".modal-map-button");
-  if (locationData.mapa && locationData.mapa["link-mapa"]) {
-    mapButton.href = locationData.mapa["link-mapa"];
+  //  Configura o botão de adicionar com o ID do local
+  const addBtn = modal.querySelector(".modal-add-button");
+  addBtn.setAttribute("data-location-id", locationData.id);
+
+  //  Verifica se já está selecionado e ajusta o botão
+  const alreadySelected = isLocationSelected(locationData.id);
+
+  if (alreadySelected) {
+    addBtn.innerHTML = `Adicionado <i class="bi bi-check-lg"></i>`;
+    addBtn.disabled = true;
+  } else {
+    addBtn.innerHTML = `Adicionar <i class="bi bi-plus-lg"></i>`;
+    addBtn.disabled = false;
   }
 
   // Mostra o modal

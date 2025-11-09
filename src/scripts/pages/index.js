@@ -16,6 +16,7 @@ import { toggleCardButton } from "../modules/renderCardList.js"; // Função par
 const locationsListContainer = document.getElementById("locations-list"); // Container que envolve os cards de localizações tanto em home quanto em selected-routes
 const navigateButton = document.querySelector(".btn-see-script");
 
+
 // Função para atualizar o contador de locais selecionados
 function updateLocationCounter() {
   const counter = document.getElementById("location-counter");
@@ -32,6 +33,7 @@ function updateLocationCounter() {
   }
 }
 
+
 // Função para ir ao roteiro com os locais selecionados
 async function handleNavigateClick() {
   const count = getSelectedLocations().length;
@@ -43,6 +45,7 @@ async function handleNavigateClick() {
 
   window.location.href = "./selected-locations.html";
 }
+
 
 // Função para lidar com o clique no card/botão
 async function handleCardClick(event) {
@@ -90,6 +93,33 @@ async function handleCardClick(event) {
   }
 }
 
+
+//  Botão “Adicionar” dentro do modal
+function handleModalAddButton(event) {
+  const button = event.target.closest(".modal-add-button");
+  if (!button) return;
+
+  const locationId = button.dataset.locationId;
+  if (!locationId) return;
+
+  const alreadySelected = isLocationSelected(locationId);
+
+  // Sempre será adicionar, pois o modal só tem o botão de adicionar
+  const success = addLocation(locationId);
+
+  if (success) {
+    updateLocationCounter();
+
+    // Se quiser trocar o texto do botão para “Adicionado ✓”
+    button.innerHTML = `Adicionado <i class="bi bi-check-lg"></i>`;
+    button.disabled = true;
+
+    // Atualizar os cards (se existirem na tela)
+    updateAllCardButtons();
+  }
+}
+
+
 document.addEventListener("DOMContentLoaded", async () => {
   // Inicializa o comportamento da tela de boas-vindas
   initWelcomeScreen();
@@ -101,6 +131,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (locationsListContainer) {
     locationsListContainer.addEventListener("click", handleCardClick);
   }
+
+  //  Listener global para o botão do modal
+  document.body.addEventListener("click", handleModalAddButton);
 
   // Atualiza o estado dos botões dos cards
   updateAllCardButtons();
@@ -114,13 +147,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+
+// Mantém botões e contador sincronizados quando volta da navegação
 window.addEventListener('pageshow', (event) => {
-    // A propriedade persisted indica se a página foi restaurada do cache do navegador (back/forward)
     if (event.persisted) {
-        console.log("Página restaurada do cache. Sincronizando estado dos botões...");
-        // Força a verificação do localStorage e atualiza os botões visuais (Adicionar/Remover)
         updateAllCardButtons();
-        // Atualiza o contador quando a página é restaurada
         updateLocationCounter();
     }
 });

@@ -271,3 +271,12 @@
 .modal-container::-webkit-scrollbar-thumb:hover {
     background: var(--primary-color);
 }
+
+.modal-add-button {
+    width: fit-content;
+    margin-left: auto;
+    margin-top: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
