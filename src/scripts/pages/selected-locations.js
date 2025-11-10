@@ -1,6 +1,4 @@
-import {
-  getLocationsData,
-} from "../modules/dataManager.js"; // Função para obter os dados completos das localizações
+import { getLocationsData } from "../modules/dataManager.js"; // Função para obter os dados completos das localizações
 import {
   getSelectedLocations,
   removeLocation,
@@ -13,7 +11,7 @@ import { initMap } from "../modules/mapController.js";
 import { handleActionClick } from "../modules/locationCardInteractions.js"; // Função para lidar com cliques de ação no card
 
 const locationsListContainer = document.getElementById("locations-list");
-const startRouteButton = document.querySelector(".btn-see-script");
+const startRouteButton = document.querySelector(".btn-see-route");
 let selectedLocationsData = [];
 
 // Filtra os locais e renderiza apenas os selecionados pelo usuário.
@@ -26,7 +24,9 @@ async function initSelectedLocationsPage() {
     return selectedIds.includes(location.id.toString());
   });
 
-  renderLocations(selectedLocations, true);
+  selectedLocationsData = selectedLocations;
+
+  renderLocations(selectedLocationsData, true);
 }
 
 async function handleRemoveAction(locationId) {
@@ -54,20 +54,22 @@ function handleModalClick(event) {
 }
 
 async function handleShowMapClick() {
-  if (!startRouteButton) return;
+  if (!startRouteButton) return; // Adicione a verificação de dados logo no início:
 
-  // Mostra um feedback de carregamento
+  if (selectedLocationsData.length === 0) {
+    alert("Selecione locais no roteiro antes de ver o mapa!");
+    return;
+  } // Mostra um feedback de carregamento
+
   startRouteButton.disabled = true;
   startRouteButton.innerHTML =
     '<i class="bi bi-arrow-clockwise spinner-border spinner-border-sm"></i> Carregando Mapa...';
 
   try {
-    // Carrega a API do Google Maps
-    const googleMaps = await loadGoogleMaps(GOOGLE_MAPS_API_KEY);
-    // Inicializa o mapa com os dados dos locais selecionados
-    initMap(googleMaps, ".selected-locations-content", selectedLocationsData);
+    const googleMaps = await loadGoogleMaps(GOOGLE_MAPS_API_KEY); // Passa o array global preenchido
 
-    // Esconde o botão e a lista de cards, deixando o mapa visível
+    initMap(googleMaps, ".selected-locations-content", selectedLocationsData); // Esconde o botão e a lista de cards, deixando o mapa visível
+
     startRouteButton.style.display = "none";
 
     if (locationsListContainer) {
@@ -82,8 +84,8 @@ async function handleShowMapClick() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  initSelectedLocationsPage();
+document.addEventListener("DOMContentLoaded", async (event) => {
+  await initSelectedLocationsPage();
 
   // Anexa o listener de ação para o botão do card e o botão do modal
   document.body.addEventListener("click", async (event) => {
@@ -112,5 +114,5 @@ document.addEventListener("DOMContentLoaded", () => {
     backButton.addEventListener("click", () => {
       window.history.back();
     });
-  };
+  }
 });
