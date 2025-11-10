@@ -1,3 +1,16 @@
 .selected-locations-content {
     margin-top: 74px;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.btn-see-route {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+
+    display: flex;
+    gap: var(--space-xs);
 }

@@ -1,6 +1,5 @@
 import {
   getLocationsData,
-  getLocationDataById,
 } from "../modules/dataManager.js"; // Função para obter os dados completos das localizações
 import {
   getSelectedLocations,
@@ -11,6 +10,7 @@ import { closeLocationModal } from "../modules/locationModal.js"; // Função pa
 import { GOOGLE_MAPS_API_KEY } from "../config/config.js";
 import { loadGoogleMaps } from "../utils/loadGoogleMaps.js";
 import { initMap } from "../modules/mapController.js";
+import { handleActionClick } from "../modules/locationCardInteractions.js"; // Função para lidar com cliques de ação no card
 
 const locationsListContainer = document.getElementById("locations-list");
 const startRouteButton = document.querySelector(".btn-see-script");
@@ -104,4 +104,13 @@ document.addEventListener("DOMContentLoaded", () => {
   if (startRouteButton) {
     startRouteButton.addEventListener("click", handleShowMapClick);
   }
+
+  // Adiciona listener para o botão de Voltar
+  const backButton = document.getElementById("back-link");
+
+  if (backButton) {
+    backButton.addEventListener("click", () => {
+      window.history.back();
+    });
+  };
 });
