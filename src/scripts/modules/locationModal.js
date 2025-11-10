@@ -1,6 +1,7 @@
 // MÓDULO UI: Componente responsável por gerenciar a exibição, o conteúdo e o estado do Modal de detalhes do local.
 
 import { isLocationSelected } from "../modules/selectedLocationsManager.js"; // ✅ Import necessário para verificar seleção
+import { getAddRemoveButtonHtml } from "../modules/locationCardInteractions.js"; // Função para gerar o HTML do botão de adicionar/remover
 
 let modalOverlay = null;
 
@@ -53,10 +54,7 @@ function initModal() {
           <div class="modal-visit-badge"></div>
         </div>
 
-        <!-- Botão de adicionar (NOVO) -->
-        <button class="btn btn-primary modal-add-button">
-          Adicionar <i class="bi bi-plus-lg"></i>
-        </button>
+        <div class="button-add-container"></div>
 
       </div>
     </div>
@@ -210,19 +208,21 @@ export function openLocationModal(locationData) {
   }
 
   //  Configura o botão de adicionar com o ID do local
-  const addBtn = modal.querySelector(".modal-add-button");
-  addBtn.setAttribute("data-location-id", locationData.id);
+  const btnAddContainer = modal.querySelector(".button-add-container");
+  const locationId = locationData.id;
 
-  //  Verifica se já está selecionado e ajusta o botão
-  const alreadySelected = isLocationSelected(locationData.id);
+  // Determina o estado inicial (já selecionado ou não)
+  const alreadySelected = isLocationSelected(locationId);
 
-  if (alreadySelected) {
-    addBtn.innerHTML = `Adicionado <i class="bi bi-check-lg"></i>`;
-    addBtn.disabled = true;
-  } else {
-    addBtn.innerHTML = `Adicionar <i class="bi bi-plus-lg"></i>`;
-    addBtn.disabled = false;
-  }
+  // Gera o HTML do botão usando o módulo compartilhado
+  // Passamos false para isRemovablePage (pois é o modal)
+  const modalButtonHTML = getAddRemoveButtonHtml(
+      locationId, 
+      false, // Não é a página de remoção
+      alreadySelected 
+  );
+
+  btnAddContainer.innerHTML = modalButtonHTML;
 
   // Mostra o modal
   requestAnimationFrame(() => {

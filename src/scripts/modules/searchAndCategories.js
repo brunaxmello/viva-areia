@@ -2,7 +2,7 @@
 
 import { getLocationsData } from "./dataManager.js";
 import { renderLocations } from "./renderCardList.js";
-import { updateAllCardButtons } from "../modules/renderCardList.js"; // Função para atualizar o estado dos botões dos cards
+import { updateAllCardButtons } from "../modules/locationCardInteractions.js"; // Função para atualizar o estado dos botões dos cards
 
 const CATEGORY_ICONS = {
   gastronomia: "bi-fork-knife",

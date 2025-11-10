@@ -7,9 +7,11 @@ import {
 import {
   getSelectedLocations,
   removeLocation,
+  isLocationSelected,
 } from "../modules/selectedLocationsManager.js"; // Funções para gerenciar os locais selecionados
 import { renderLocations } from "../modules/renderCardList.js"; // Função para listar os locais (é usada tanto no home como no selected-locations)
-import { openLocationModal } from "../modules/locationModal.js"; // Função para abrir o modal de detalhes do local (é usada tanto no home como no selected-locations)
+import { closeLocationModal } from "../modules/locationModal.js"; // Função para abrir o modal de detalhes do local (é usada tanto no home como no selected-locations)
+import { handleActionClick } from "../modules/locationCardInteractions.js"; // Função unificada para tratar cliques no Card e Botões (Lista e Modal)
 
 const locationsListContainer = document.getElementById("locations-list");
 
@@ -26,55 +28,43 @@ async function initSelectedLocationsPage() {
   renderLocations(selectedLocations, true);
 }
 
-// Gerencia os eventos de clique (remover e abrir modal) nos cards de localização no selected-locations.js.
-async function handlePageClick(event) {
-  const button = event.target.closest(".btn-card");
-  const cardElement = event.target.closest(".card-location");
-
-  if (!cardElement) {
-    return; // Sai se o clique não for em um botão dentro de um card
-  }
-
-  const locationId = cardElement.dataset.locationId;
-
-  if (button) {
-    event.stopPropagation(); // Evita que o clique no botão dispare outros eventos
-    const wasRemoved = removeLocation(locationId);
-
+async function handleRemoveAction(locationId) {
+    const wasRemoved = removeLocation(locationId); 
+    
     if (wasRemoved) {
-      cardElement.remove(); // Remove o card da interface
-
-      const remainingCards =
-        locationsListContainer.querySelectorAll(".card-location");
-      if (remainingCards.length === 0) {
-        locationsListContainer.innerHTML =
-          '<p class="message-info">Nenhum local selecionado no seu roteiro.</p>';
-      }
+        // Se a remoção for bem-sucedida no localStorage
+        closeLocationModal(); 
+        
+        // Força a re-renderização da página completa
+        await initSelectedLocationsPage(); 
     }
-  } else {
-    // Clicou no card (fora do botão), abre o modal de detalhes
+}
 
-    const locationData = await getLocationDataById(locationId);
-
-    if (locationData) {
-      openLocationModal(locationData);
-    } else {
-      console.error(`Dados do local ID ${locationId} não encontrados.`);
+function handleModalClick(event) {
+    const actionButton = event.target.closest(".btn-card, .button-add-container button");
+    if (actionButton) {
+        const locationId = actionButton.dataset.locationId;
+        
+        // Ação deve ser sempre REMOVER nesta página
+        handleRemoveAction(locationId); 
     }
-  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  initSelectedLocationsPage();
-
-  // Adiciona listener para remover locais da lista
-  if (locationsListContainer) {
-    locationsListContainer.addEventListener(
-      "click",
-      async (event) => {
-        await handlePageClick(event);
-      },
-      true
-    );
-  }
+    initSelectedLocationsPage(); 
+    
+    // Anexa o listener de ação para o botão do card e o botão do modal
+    document.body.addEventListener('click', async (event) => {
+        
+        const actionButton = event.target.closest(".btn-card, .button-add-container button");
+        
+        if (actionButton) {
+             // Se for clique no botão, chamamos a lógica de remoção centralizada
+             event.stopPropagation();
+             await handleRemoveAction(actionButton.dataset.locationId);
+        } else {
+             // Caso contrário, usa o handleActionClick para abrir o modal
+             await handleActionClick(event);
+        }
+    });
 });

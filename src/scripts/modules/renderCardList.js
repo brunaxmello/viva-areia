@@ -1,6 +1,7 @@
 // MÓDULO UI: Responsável por construir, injetar e atualizar o HTML dos cards de localização. É agnóstico a dados e filtros.
 
 import { isLocationSelected } from "../modules/selectedLocationsManager.js"; // Funções para gerenciar locais selecionados
+import { getAddRemoveButtonHtml } from "../modules/locationCardInteractions.js"; // Função para gerar o HTML do botão de adicionar/remover
 
 const locationsListContainer = document.getElementById("locations-list");
 
@@ -21,9 +22,9 @@ export function renderLocations(locations, isRemovablePage = false) {
   locations.forEach((location) => {
     const locationId = location.id ? location.id.toString() : location.nome;
 
-    const buttonHTML = isRemovablePage
-      ? `<button class="btn btn-primary btn-card btn-remove-location" data-location-id="${locationId}">Remover <i class="bi bi-dash-lg"></i></button>`
-      : `<button class="btn btn-primary btn-card" data-location-id="${locationId}">Adicionar <i class="bi bi-plus-lg"></i></button>`;
+    const isSelected = isLocationSelected(locationId);
+
+    const buttonHTML = getAddRemoveButtonHtml(locationId, isRemovablePage, isSelected);
 
     const cardHTML = `
             <div class="card-location" data-location-id="${locationId}">
@@ -42,27 +43,5 @@ export function renderLocations(locations, isRemovablePage = false) {
             </div>
         `;
     locationsListContainer.innerHTML += cardHTML;
-  });
-}
-
-// Função que troca o texto e a aparência do botão do card
-export function toggleCardButton(buttonElement, isAdded) {
-  if (isAdded) {
-    // Estado: Já adicionado
-    buttonElement.innerHTML = 'Remover <i class="bi bi-dash-lg"></i>';
-    buttonElement.classList.add("btn-remove-location");
-  } else {
-    // Estado: Padrão (Adicionar)
-    buttonElement.innerHTML = 'Adicionar <i class="bi bi-plus-lg"></i>';
-    buttonElement.classList.remove("btn-remove-location");
-  }
-}
-
-// Função para atualizar o estado de todos os botões dos cards
-export function updateAllCardButtons() {
-  document.querySelectorAll(".btn-card").forEach((button) => {
-    const locationId = button.dataset.locationId;
-    const isSelected = isLocationSelected(locationId);
-    toggleCardButton(button, isSelected);
   });
 }
