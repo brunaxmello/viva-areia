@@ -5,7 +5,7 @@ import {
 } from "../modules/selectedLocationsManager.js"; // Funções para gerenciar os locais selecionados
 import { renderLocations } from "../modules/renderCardList.js"; // Função para listar os locais
 import { closeLocationModal } from "../modules/locationModal.js"; // Função para abrir o modal de detalhes
-import { GOOGLE_MAPS_API_KEY } from "../config/config.js";
+import { GOOGLE_MAPS_API_KEY, MAP_ID } from "../config/config.js";
 import { loadGoogleMaps } from "../utils/loadGoogleMaps.js";
 import { initMap } from "../modules/mapController.js";
 import { handleActionClick } from "../modules/locationCardInteractions.js"; // Função para lidar com cliques de ação no card
@@ -66,7 +66,7 @@ async function handleShowMapClick() {
     '<i class="bi bi-arrow-clockwise spinner-border spinner-border-sm"></i> Carregando Mapa...';
 
   try {
-    const googleMaps = await loadGoogleMaps(GOOGLE_MAPS_API_KEY); // Passa o array global preenchido
+    const googleMaps = await loadGoogleMaps(GOOGLE_MAPS_API_KEY, MAP_ID); // Passa o array global preenchido
 
     initMap(googleMaps, ".selected-locations-content", selectedLocationsData); // Esconde o botão e a lista de cards, deixando o mapa visível
 

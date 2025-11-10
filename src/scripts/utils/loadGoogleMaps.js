@@ -1,6 +1,6 @@
 let googleMapsPromise = null;
 
-export function loadGoogleMaps(apiKey) {
+export function loadGoogleMaps(apiKey, MAP_ID) {
   if (googleMapsPromise) return googleMapsPromise; // Evita carregar duas vezes
 
   googleMapsPromise = new Promise((resolve, reject) => {
@@ -12,7 +12,7 @@ export function loadGoogleMaps(apiKey) {
 
     // Cria o script
     const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places,marker&map_ids=${MAP_ID}`;
     script.async = true;
     script.defer = true;
 

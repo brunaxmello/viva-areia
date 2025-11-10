@@ -3,7 +3,7 @@
 import { initWelcomeScreen } from "../modules/welcomeScreen.js"; // Função para inicializar a tela de boas-vindas no mobile ou no desktop
 import { initSearchAndCategories } from "../modules/searchAndCategories.js"; // Função para inicializar a busca, filtros e listagem de locais
 import { getSelectedLocations } from "../modules/selectedLocationsManager.js"; // Função para obter os locais selecionados
-import { updateAllCardButtons, handleActionClick, closeLocationModal } from "../modules/locationCardInteractions.js"; // Função para atualizar o estado dos botões dos cards
+import { updateAllCardButtons, handleActionClick } from "../modules/locationCardInteractions.js"; // Função para atualizar o estado dos botões dos cards
 import { updateLocationCounter } from "../modules/badgeLocationCounter.js"; // Função para atualizar o contador de locais selecionados
 
 const navigateButton = document.querySelector(".btn-see-script");
