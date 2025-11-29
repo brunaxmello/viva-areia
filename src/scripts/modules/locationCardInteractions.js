@@ -6,8 +6,12 @@ import {
   addLocation,
   removeLocation,
   isLocationSelected,
+  getSelectedLocations, // ← ADICIONADO
 } from "../modules/selectedLocationsManager.js"; // Funções para gerenciar locais selecionados
 import { updateLocationCounter } from "../modules/badgeLocationCounter.js"; // Função para atualizar o contador de locais selecionados
+import { customAlert } from "../modules/customAlert.js"; // ← ADICIONADO
+
+
 
 // Gera o HTML do botão de adicionar/remover para os cards e modais de localizações
 export function getAddRemoveButtonHtml(locationId, isRemovablePage, isSelected = false) {
@@ -79,6 +83,12 @@ export async function handleActionClick(event) {
     } else {
       actionSuccessful = addLocation(locationId);
       isAdded = true;
+      
+    
+      const selectedCount = getSelectedLocations().length;
+      if (selectedCount === 1) {
+        customAlert("Primeiro ponto adicionado!\nVeja seu roteiro completo clicando no botão abaixo e continue montando sua viagem.");
+      }
     }
 
     if (actionSuccessful) {
