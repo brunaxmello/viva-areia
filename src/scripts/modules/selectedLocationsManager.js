@@ -48,4 +48,6 @@ export function removeLocation(locationId) {
   return false; // Não estava na lista
 }
 
-export { getSelectedLocations };
+export { getSelectedLocations }; 
+
+

@@ -11,6 +11,7 @@
 @import url("components/button.css");
 @import url("components/card.css");
 @import url("components/locationModal.css");
+@import url("components/customAlert.css");
 
 /* 3. Estilos de páginas específicas */
 @import url("pages/index.css");
