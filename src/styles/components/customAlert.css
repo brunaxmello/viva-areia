@@ -1,5 +1,5 @@
 /* ===========================================
-   MODAL DE ALERTA CUSTOMIZADO
+   MODAL DE ALERTA CUSTOMIZADO 
    =========================================== */
 
 /* Overlay do modal */
@@ -9,7 +9,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.45);
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -26,42 +26,49 @@
     visibility: visible;
 }
 
-/* Container do modal */
+
 .custom-alert-container {
-    background-color: #FFFFFF;
-    border-radius: 16px;
-    max-width: 450px;
+    background-color: #F7FAF7; 
+    border-radius: 24px; 
+    max-width: 440px;
     width: 100%;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.10);
     transform: translateY(-20px) scale(0.95);
     transition: transform 0.3s ease;
     overflow: hidden;
+    padding: 20px 24px;
+    position: relative;
     cursor: pointer;
+}
+
+
+.custom-alert-container::after {
+    content: "";
+    position: absolute;
+    bottom: -12px;
+    right: 40px;
+    width: 0;
+    height: 0;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-top: 14px solid #F7FAF7;
 }
 
 .custom-alert-overlay.active .custom-alert-container {
     transform: translateY(0) scale(1);
 }
 
-/* Conteúdo do modal */
 .custom-alert-content {
-    padding: 24px;
     display: flex;
-    gap: 16px;
+    gap: 14px;
     align-items: flex-start;
 }
 
-.custom-alert-container:hover {
-    box-shadow: 0 8px 36px rgba(0, 0, 0, 0.16);
-}
-
-/* Ícone de check */
 .custom-alert-icon {
-    width: 32px;
-    height: 32px;
-    min-width: 32px;
-    background-color: #294727; 
-    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    background-color: #E8F6E6; 
+    border-radius: 12px; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -70,90 +77,55 @@
 }
 
 .custom-alert-icon i {
-    font-size: 18px;
-    color: #FFFFFF;
-    font-weight: bold;
-    line-height: 1;
+    font-size: 22px;
+    color: #294727; 
 }
 
-/* Área de texto */
+/* Textos */
 .custom-alert-text {
     flex: 1;
 }
-
-/* Título */
 .custom-alert-title {
-    font-size: 17px;
-    color: #294727;
-    margin: 0 0 8px 0;
+    font-size: 18px;
+    color: #1F3A1F;
+    margin: 0 0 10px 0;
     font-weight: 600;
     line-height: 1.4;
-    letter-spacing: -0.01em;
 }
 
-/* Mensagem */
 .custom-alert-message {
-    font-size: 15px;
-    color: #6B7280;
+    font-size: 16px;
+    color: #294727;
     margin: 0;
-    line-height: 1.5;
-    letter-spacing: -0.01em;
+    line-height: 1.45;
+    font-weight: 700; 
 }
 
+/* ========================
+   RESPONSIVO
+   ======================== */
 
 @media (max-width: 480px) {
-    .custom-alert-overlay {
-        padding-top: 40px;
-        padding-left: 16px;
-        padding-right: 16px;
-    }
 
     .custom-alert-container {
-        max-width: 100%;
-        border-radius: 12px;
-    }
-
-    .custom-alert-content {
-        padding: 20px;
-        gap: 14px;
+        border-radius: 20px;
+        padding: 18px 20px;
     }
 
     .custom-alert-icon {
-        width: 28px;
-        height: 28px;
-        min-width: 28px;
+        width: 32px;
+        height: 32px;
     }
 
     .custom-alert-icon i {
-        font-size: 16px;
+        font-size: 18px;
     }
 
     .custom-alert-title {
         font-size: 16px;
-        margin-bottom: 6px;
     }
 
     .custom-alert-message {
         font-size: 14px;
-    }
-
-    .custom-alert-button {
-        padding: 12px;
-        font-size: 15px;
-    }
-}
-
-@media (max-width: 375px) {
-    .custom-alert-content {
-        padding: 18px;
-        gap: 12px;
-    }
-
-    .custom-alert-title {
-        font-size: 15px;
-    }
-
-    .custom-alert-message {
-        font-size: 13px;
     }
 }

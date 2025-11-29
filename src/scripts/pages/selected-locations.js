@@ -9,6 +9,7 @@ import { GOOGLE_MAPS_API_KEY, MAP_ID } from "../config/config.js";
 import { loadGoogleMaps } from "../utils/loadGoogleMaps.js";
 import { initMap } from "../modules/mapController.js";
 import { handleActionClick } from "../modules/locationCardInteractions.js"; // Função para lidar com cliques de ação no card
+import { customAlert } from "../modules/customAlert.js"; // ← LINHA ADICIONADA
 
 const locationsListContainer = document.getElementById("locations-list");
 const startRouteButton = document.querySelector(".btn-see-route");
@@ -56,8 +57,9 @@ function handleModalClick(event) {
 async function handleShowMapClick() {
   if (!startRouteButton) return; // Adicione a verificação de dados logo no início:
 
+  // ✅ SUBSTITUÍDO: alert() por customAlert()
   if (selectedLocationsData.length === 0) {
-    alert("Selecione locais no roteiro antes de ver o mapa!");
+    customAlert("Selecione locais no roteiro antes de ver o mapa!");
     return;
   } // Mostra um feedback de carregamento
 
