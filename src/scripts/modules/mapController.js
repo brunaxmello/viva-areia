@@ -1,5 +1,4 @@
 import { MAP_ID } from "../config/config.js";
-// modules/mapController.js
 
 // Novo helper para criar o conteúdo do marcador (o número)
 function buildMarkerContent(label) {
@@ -8,7 +7,7 @@ function buildMarkerContent(label) {
     color: white;
     font-weight: bold;
     font-size: 14px;
-    background-color: #007bff; /* Cor do seu botão primário */
+    background-color: #007bff;
     border-radius: 50%;
     width: 24px;
     height: 24px;
@@ -22,28 +21,40 @@ function buildMarkerContent(label) {
 }
 
 // Função para adicionar marcadores avançados
-function addCustomMarkers(googleMaps, map, locations, AdvancedMarkerElement) {
-  locations.forEach((loc, index) => {
+function addCustomMarkers(
+  googleMaps,
+  map,
+  locations,
+  AdvancedMarkerElement,
+  waypointOrder
+) {
+  // Array com os waypoints na ordem otimizada
+  const sortedWaypoints = waypointOrder.map((index) => locations[index]);
+
+  // O destino final é o último elemento da lista original (que não é um waypoint)
+  const destinationIndex = locations.length - 1;
+  const finalLocations = [...sortedWaypoints, locations[destinationIndex]];
+
+  finalLocations.forEach((loc, index) => {
+    // Marcadores de 1 a N
     const content = buildMarkerContent(String(index + 1));
-    
-    // Usando o AdvancedMarkerElement
+
     const marker = new AdvancedMarkerElement({
       position: { lat: loc.lat, lng: loc.lng },
       map,
-      content: content, 
+      content: content,
       title: loc.nome || `Ponto ${index + 1}`,
     });
 
     const infoWindow = new googleMaps.maps.InfoWindow({
       content: `
-        <div style="font-size:14px;">
-          <strong>${loc.nome || "Local"}</strong><br>
-          ${loc.contato?.endereco || ""}
-        </div>
-      `,
+                <div style="font-size:14px;">
+                    <strong>${loc.nome || "Local"}</strong><br>
+                    ${loc.contato?.endereco || ""}
+                </div>
+            `,
     });
 
-    // O AdvancedMarkerElement herda o addListener do Marker
     marker.addListener("click", () => {
       infoWindow.open(map, marker);
     });
@@ -54,22 +65,19 @@ function addCustomMarkers(googleMaps, map, locations, AdvancedMarkerElement) {
 export async function initMap(
   googleMaps,
   containerSelector,
-  selectedLocationsData
+  selectedLocationsData,
+  userLocation // Pode ser null se a permissão for negada
 ) {
-
-  // 1. Carrega o módulo de marcador
   const { AdvancedMarkerElement } = await googleMaps.maps.importLibrary(
     "marker"
   );
-
   const container = document.querySelector(containerSelector);
 
   if (!container) {
-    console.error("Container do mapa não encontrado:", containerSelector);
+    console.error("Container do mapa não encontrado.");
     return;
   }
 
-  // Extrai e valida as coordenadas
   const validLocations = selectedLocationsData
     .map((loc) => ({
       ...loc,
@@ -84,91 +92,140 @@ export async function initMap(
     return;
   }
 
+  // 1. Definição de ORIGEM (Prioridade: Localização do Usuário, Senão: Primeiro Local)
+  const isUserOrigin = userLocation && userLocation.lat && userLocation.lng;
+  const origin = isUserOrigin
+    ? userLocation
+    : { lat: validLocations[0].lat, lng: validLocations[0].lng };
+
+  // 2. Definição dos WAYPOINTS e DESTINO
+  // Se a origem for a localização do usuário, todos os locais salvos são waypoints/destino.
+  // Se a origem for o primeiro local salvo, removemos ele da lista de waypoints.
+
+  const routePoints = isUserOrigin ? validLocations : validLocations.slice(1);
+
+  if (routePoints.length === 0) {
+    // Este caso é se o usuário negou a permissão E só tinha 1 ponto salvo.
+    // A rota não é necessária, apenas o mapa centrado no ponto.
+  }
+
+  const destination =
+    routePoints.length > 0
+      ? {
+          lat: routePoints[routePoints.length - 1].lat,
+          lng: routePoints[routePoints.length - 1].lng,
+        }
+      : origin;
+
+  const waypoints = routePoints.slice(0, -1).map((loc) => ({
+    location: { lat: loc.lat, lng: loc.lng },
+    stopover: true,
+  }));
+
   // Cria o mapa (agora com o mapId)
   const map = new googleMaps.maps.Map(container, {
     zoom: 13,
-    center: { lat: validLocations[0].lat, lng: validLocations[0].lng },
+    center: origin,
     mapTypeControl: false,
     streetViewControl: false,
     fullscreenControl: true,
-    mapId: MAP_ID, // <-- Implementação do Map ID
+    mapId: MAP_ID,
   });
 
-  // Caso só tenha um ponto, apenas marca no mapa
-  if (validLocations.length < 2) {
-    validLocations.forEach((loc) => {
-      new AdvancedMarkerElement({
-        position: { lat: loc.lat, lng: loc.lng },
-        map,
-        title: loc.nome || "Local",
-      });
+  // Caso só tenha um ponto ou a rota seja impossível
+  if (routePoints.length <= 1) {
+    // Adiciona um marcador no único ponto/destino
+    new AdvancedMarkerElement({
+      position: destination,
+      map,
+      title: validLocations[0].nome,
     });
+    if (isUserOrigin) {
+      new AdvancedMarkerElement({
+        position: origin,
+        map,
+        content: buildMarkerContent("EU"),
+        title: "Minha Localização Atual",
+      });
+    }
+    map.setCenter(origin);
+    map.setZoom(13);
     return;
   }
 
   const directionsService = new googleMaps.maps.DirectionsService();
   const directionsRenderer = new googleMaps.maps.DirectionsRenderer({
     map,
-    suppressMarkers: false,
+    suppressMarkers: true,
     preserveViewport: false,
   });
-
-  const origin = { lat: validLocations[0].lat, lng: validLocations[0].lng };
-  const destination = {
-    lat: validLocations[validLocations.length - 1].lat,
-    lng: validLocations[validLocations.length - 1].lng,
-  };
-  const waypoints = validLocations.slice(1, -1).map((loc) => ({
-    location: { lat: loc.lat, lng: loc.lng },
-    stopover: true,
-  }));
 
   const request = {
     origin,
     destination,
     waypoints,
     travelMode: googleMaps.maps.TravelMode.DRIVING,
-    optimizeWaypoints: false,
+    optimizeWaypoints: true, // A chave da otimização
   };
 
   directionsService.route(request, (response, status) => {
     if (status === googleMaps.maps.DirectionsStatus.OK || status === "OK") {
       directionsRenderer.setDirections(response);
-      
-      // Adiciona os marcadores personalizados
-      addCustomMarkers(googleMaps, map, validLocations, AdvancedMarkerElement); 
 
-      // Ajusta automaticamente o zoom/centro para caber toda a rota
+      const waypointOrder = response.routes[0].waypoint_order;
+
+      // Adiciona um marcador especial para o usuário
+      if (isUserOrigin) {
+        new AdvancedMarkerElement({
+          position: origin,
+          map,
+          content: buildMarkerContent("EU"),
+          title: "Minha Localização Atual",
+        });
+      }
+
+      // Adiciona os marcadores customizados usando a ordem otimizada
+      addCustomMarkers(
+        googleMaps,
+        map,
+        routePoints,
+        AdvancedMarkerElement,
+        waypointOrder
+      );
+
+      // Lógica de Bounds e Geração da URL...
       const route = response.routes[0];
       const bounds = new googleMaps.maps.LatLngBounds();
       route.overview_path.forEach((p) => bounds.extend(p));
       map.fitBounds(bounds);
 
-      // =================================================================
-      // LÓGICA DE NAVEGAÇÃO GPS (Tipo Dirigindo)
-      // =================================================================
-      const originCoord = `${validLocations[0].lat},${validLocations[0].lng}`;
-      const destinationCoord = `${validLocations[validLocations.length - 1].lat},${validLocations[validLocations.length - 1].lng}`;
-      
-      // Formata os waypoints no formato LAT,LNG|LAT,LNG|...
-      const waypointsString = validLocations.slice(1, -1)
-          .map(loc => `${loc.lat},${loc.lng}`)
-          .join('|');
-          
-      // Constrói a URL do Google Maps para iniciar a navegação
-      let mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${originCoord}&destination=${destinationCoord}&travelmode=driving`;
-      
-      if (waypointsString) {
-          mapsUrl += `&waypoints=${waypointsString}`;
+      const destinationCoord = `${destination.lat},${destination.lng}`;
+      const originCoord = `${origin.lat},${origin.lng}`;
+
+      // Gera a string de waypoints na ordem OTIMIZADA
+      const sortedWaypointsCoords = waypointOrder
+        .map((index) => `${routePoints[index].lat},${routePoints[index].lng}`)
+        .join("|");
+
+      // Usa a sintaxe correta da API de URL do Google Maps para Direções
+      let mapsUrl = `https://www.google.com/maps/dir/?api=1`;
+
+      // Adicionar Origem, Destino e Modo de Viagem
+      mapsUrl += `&origin=${originCoord}`;
+      mapsUrl += `&destination=${destinationCoord}`;
+      mapsUrl += `&travelmode=driving`; // Define o modo "Dirigindo"
+
+      // Adicionar waypoints otimizados, se houver
+      if (sortedWaypointsCoords) {
+        mapsUrl += `&waypoints=${sortedWaypointsCoords}`;
       }
 
-      // Abre a navegação GPS em uma nova aba para o usuário
-      window.open(mapsUrl, '_blank');
-      // =================================================================
-      
+      window.open(mapsUrl, "_blank");
     } else {
       console.error("Erro ao gerar rota:", status, response);
-      alert("Não foi possível gerar a rota. Verifique as permissões da API Key (Directions API) e o Map ID.");
+      alert(
+        "Não foi possível gerar a rota. Verifique as permissões da API Key (Directions API) e o Map ID."
+      );
     }
   });
 }

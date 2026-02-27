@@ -280,3 +280,13 @@
     align-items: center;
     gap: var(--space-xs);
 }
+
+.button-add-container {
+    display: flex;
+}
+
+.button-add-container button {
+    margin-top: var(--space-md);
+    flex: 1;
+    align-self: stretch;
+}
