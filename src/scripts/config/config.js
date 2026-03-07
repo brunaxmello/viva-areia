@@ -1,4 +1,4 @@
-export const GOOGLE_MAPS_API_KEY = "AIzaSyCUtzoTsyeyQTmjy8hrbXwX3TbXxbmtqnQ";
+export const GOOGLE_MAPS_API_KEY = "AIzaSyBNJYE8JM2YPvph8V_iKzkKkTq-kl_vUnU";
 
-export const MAP_ID = "cdc3026c511a3d2eca1eeb64";
+export const MAP_ID = "daadbb1e2b577d13e142a2e3";
 

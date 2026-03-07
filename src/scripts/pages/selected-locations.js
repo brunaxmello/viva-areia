@@ -5,7 +5,7 @@ import {
 } from "../modules/selectedLocationsManager.js";
 import { renderLocations } from "../modules/renderCardList.js";
 import { closeLocationModal } from "../modules/locationModal.js";
-import { GOOGLE_MAPS_API_KEY } from "../config/config.js";
+import { GOOGLE_MAPS_API_KEY, MAP_ID } from "../config/config.js";
 import { loadGoogleMaps } from "../utils/loadGoogleMaps.js";
 import { initMap } from "../modules/mapController.js";
 import { handleActionClick } from "../modules/locationCardInteractions.js";
@@ -87,7 +87,7 @@ async function handleShowMapClick() {
   }
 
   try {
-    const googleMaps = await loadGoogleMaps(GOOGLE_MAPS_API_KEY);
+    const googleMaps = await loadGoogleMaps(GOOGLE_MAPS_API_KEY, MAP_ID);
 
     // Inicia o mapa (userLocation pode ser null, o initMap lida com isso)
     await initMap(

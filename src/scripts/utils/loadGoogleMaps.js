@@ -4,25 +4,35 @@ export function loadGoogleMaps(apiKey, MAP_ID) {
   if (googleMapsPromise) return googleMapsPromise; // Evita carregar duas vezes
 
   googleMapsPromise = new Promise((resolve, reject) => {
-    // Se a API já estiver carregada
     if (window.google && window.google.maps) {
       resolve(window.google);
       return;
     }
 
-    // Cria o script
+    const callbackName = "__vivaAreiaInitGoogleMaps";
+
+    // Evita redefinir se outro carregamento já definiu o callback
+    if (!window[callbackName]) {
+      window[callbackName] = () => {
+        if (window.google && window.google.maps) {
+          resolve(window.google);
+        } else {
+          reject(new Error("Google Maps SDK não foi inicializada corretamente (callback)."));
+        }
+        try {
+          delete window[callbackName];
+        } catch (e) {
+          window[callbackName] = undefined;
+        }
+      };
+    }
+
     const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places,marker&map_ids=${MAP_ID}`;
+    let src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places,marker&callback=${callbackName}`;
+    if (MAP_ID) src += `&map_ids=${MAP_ID}`;
+    script.src = src;
     script.async = true;
     script.defer = true;
-
-    script.onload = () => {
-      if (window.google && window.google.maps) {
-        resolve(window.google);
-      } else {
-        reject(new Error("Google Maps SDK não foi carregado corretamente."));
-      }
-    };
 
     script.onerror = () => reject(new Error("Erro ao carregar o script do Google Maps."));
     document.head.appendChild(script);
