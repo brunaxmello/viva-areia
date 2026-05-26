@@ -10,6 +10,13 @@ const CATEGORY_ICONS = {
   historia: "bi-book-fill",
   engenhos: "bi-house-door-fill",
   cultura: "bi-camera-reels-fill",
+  patrimonio: "bi-buildings",
+  museus: "bi-columns-gap",
+  arte: "bi-palette-fill",
+  "turismo-rural": "bi-flower1",
+  aventura: "bi-lightning-fill",
+  turismo: "bi-map-fill",
+  hospedagem: "bi-door-closed",
 
   // Ícone para a opção padrão
   Todas: "bi-grid-fill",
