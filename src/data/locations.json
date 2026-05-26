@@ -18,19 +18,18 @@
     ],
     "contato": {
       "endereco": "Zona Rural, Areia – PB",
-      "instagram": "@engenhotriunfooficial"
+      "instagram": "https://www.instagram.com/engenhotriunfooficial/"
     },
     "visita": {
       "tipo": "Gratuita"
     },
-    "imagem": "./src/images/images-locations/engenho-triunfo.png",
+    "imagem": "https://i.ibb.co/ccF31cQT/Whats-App-Image-2024-02-05-at-08-02-13-1024x569-jpeg.webp",
     "mapa": {
       "latitude": -6.975146811230601,
       "longitude": -35.69479604405134,
       "link-mapa": "https://maps.app.goo.gl/wBnxnvLMjpKsWSM98"
     }
   },
-
   {
     "id": 2,
     "nome": "Mata do Pau-Ferro",
@@ -50,12 +49,12 @@
     ],
     "contato": {
       "endereco": "Chã de Jardim, Areia – PB",
-      "instagram": "@parqueestadualmatadopauferro"
+      "instagram": "https://www.instagram.com/parqueestadualmatadopauferro/"
     },
     "visita": {
       "tipo": "Paga"
     },
-    "imagem": "./src/images/images-locations/mata-pau-ferro-de-longe.png",
+    "imagem": "https://i.ibb.co/RwnMVq9/38893551-400x300.jpg",
     "mapa": {
       "latitude": -6.969103921713629,
       "longitude": -35.741384365597604,
@@ -80,16 +79,228 @@
     ],
     "contato": {
       "endereco": "R. Epitácio Pessoa - Areia, PB",
-      "instagram": "@teatrominervaareia"
+      "instagram": "https://www.instagram.com/teatrominervaareia/"
     },
     "visita": {
       "tipo": "Paga"
     },
-    "imagem": "./src/images/images-locations/teatro-minerva.jpg",
+    "imagem": "https://i.ibb.co/KcDDq8WV/teatro-minerva.jpg",
     "mapa": {
       "latitude": -6.96758667295337,
       "longitude": -35.701774270601135,
       "link-mapa": "https://maps.app.goo.gl/CGTvYjyH7YU2cpm56"
+    }
+  },
+  {
+    "id": 4,
+    "nome": "Museu do Brejo Paraibano",
+    "descricao": "Museu localizado dentro da UFPB que preserva a história, cultura e tradições do Brejo Paraibano, reunindo objetos históricos e elementos culturais da região.",
+    "categorias": ["museus", "cultura"],
+    "informacoes": {
+      "horario": "8h às 17h",
+      "dias-abertos": "Segunda a Sexta",
+      "o-que-levar": "Câmera fotográfica",
+      "tempo-medio-visita": "1 hora"
+    },
+    "atracoes": [
+      "Exposição cultural",
+      "Objetos históricos",
+      "Acervo regional",
+      "Visitas educativas"
+    ],
+    "contato": {
+      "endereco": "Campus da UFPB, Areia – PB",
+      "instagram": "https://www.instagram.com/museudobrejoparaibano/"
+    },
+    "visita": {
+      "tipo": "Gratuita"
+    },
+    "imagem": "https://i.ibb.co/7J7RnsM1/unnamed.webp",
+    "mapa": {
+      "latitude": -6.968058959107868,
+      "longitude": -35.71567191366377,
+      "link-mapa": "https://maps.app.goo.gl/foNS5Tw7ZWfpnCdf9"
+    }
+  },
+  {
+    "id": 5,
+    "nome": "Casarão de José Rufino",
+    "descricao": "Casarão histórico repleto de memórias, objetos antigos e elementos da arquitetura colonial que contam parte da história de Areia.",
+    "categorias": ["historia", "patrimonio"],
+    "informacoes": {
+      "horario": "9h às 17h",
+      "dias-abertos": "Terça a Domingo",
+      "o-que-levar": "Câmera fotográfica",
+      "tempo-medio-visita": "40 minutos"
+    },
+    "atracoes": [
+      "Visita guiada",
+      "Objetos históricos",
+      "Arquitetura colonial",
+      "História local"
+    ],
+    "contato": {
+      "endereco": "Centro Histórico, Areia – PB",
+      "instagram": "https://www.instagram.com/casarao_joserufino/"
+    },
+    "visita": {
+      "tipo": "Paga"
+    },
+    "imagem": "https://i.ibb.co/Sk9W303/Captura-de-tela-2026-05-25-214719.png",
+    "mapa": {
+      "latitude": -6.968956404530693, 
+      "longitude": -35.70358867993246,
+      "link-mapa": "https://maps.app.goo.gl/351QYYhpwrZMjyjn8"
+    }
+  },
+  {
+    "id": 6,
+    "nome": "Engenho Saburá",
+    "descricao": "Engenho tradicional da região de Areia conhecido pela produção artesanal de cachaça e pela experiência do turismo rural no Brejo Paraibano.",
+    "categorias": ["engenhos", "turismo-rural"],
+    "informacoes": {
+      "horario": "8h às 16h",
+      "dias-abertos": "Sob agendamento",
+      "o-que-levar": "Chapéu, água, câmera",
+      "tempo-medio-visita": "1 hora"
+    },
+    "atracoes": [
+      "Produção artesanal",
+      "Degustação",
+      "Passeio guiado",
+      "Turismo rural"
+    ],
+    "contato": {
+      "endereco": "Zona Rural, Areia – PB",
+      "instagram": "https://www.instagram.com/engenhosabura/"
+    },
+    "visita": {
+      "tipo": "Paga"
+    },
+    "imagem": "https://i.ibb.co/67n03HYT/caption.jpg",
+    "mapa": {
+      "latitude": -7.000523067477195, 
+      "longitude": -35.6802306772177,
+      "link-mapa": "https://maps.app.goo.gl/kY7ABjAJHKXY6XU77"
+    }
+  },
+  {
+    "id": 7,
+    "nome": "Museu Casa de Pedro Américo",
+    "descricao": "Museu dedicado ao pintor paraibano Pedro Américo, reunindo obras, documentos e objetos históricos ligados à sua trajetória artística.",
+    "categorias": ["museus", "arte", "historia"],
+    "informacoes": {
+      "horario": "8h às 17h",
+      "dias-abertos": "Terça a Domingo",
+      "o-que-levar": "Câmera fotográfica",
+      "tempo-medio-visita": "1 hora"
+    },
+    "atracoes": [
+      "Obras de Pedro Américo",
+      "Acervo histórico",
+      "Visita cultural",
+      "Exposição artística"
+    ],
+    "contato": {
+      "endereco": "Centro Histórico, Areia – PB",
+      "instagram": "https://www.instagram.com/casapedroamerico/"
+    },
+    "visita": {
+      "tipo": "Gratuita"
+    },
+    "imagem": "https://i.ibb.co/C5tccQRy/unnamed-1.webp",
+    "mapa": {
+      "latitude": -6.968513360044267, 
+      "longitude": -35.70463946193108,
+      "link-mapa": "https://maps.app.goo.gl/N9MvdoEpuK1GonYs9"
+    }
+  },
+  {
+    "id": 8,
+    "nome": "Museu Regional de Areia",
+    "descricao": "Museu regional com objetos históricos e culturais que representam os costumes, tradições e cotidiano do povo do Brejo Paraibano.",
+    "categorias": ["museus", "cultura"],
+    "informacoes": {
+      "horario": "8h às 17h",
+      "dias-abertos": "Terça a Domingo",
+      "o-que-levar": "Câmera fotográfica",
+      "tempo-medio-visita": "50 minutos"
+    },
+    "atracoes": [
+      "Acervo regional",
+      "Objetos antigos",
+      "História local",
+      "Cultura popular"
+    ],
+    "contato": {
+      "endereco": "Centro, Areia – PB",
+      "instagram": "https://www.instagram.com/mura.areia/"
+    },
+    "visita": {
+      "tipo": "Gratuita"
+    },
+    "imagem": "https://i.ibb.co/39Qfggzd/Museu-Regional-de-Areia-03.jpg",
+    "mapa": {
+      "latitude": -6.968916323695902, 
+      "longitude": -35.704329276767545,
+      "link-mapa": "https://imgur.com/a/Qj48rE7"
+    }
+  },
+  {
+    "id": 9,
+    "nome": "Circuito De Aventuras Triunfo",
+    "descricao": "Experiência de aventura com trilhas off-road, mirantes, tirolesa e atividades radicais em meio à natureza do Brejo Paraibano.",
+    "categorias": ["aventura", "natureza"],
+    "informacoes": {
+      "horario": "9h às 17h",
+      "dias-abertos": "Todos os dias",
+      "o-que-levar": "Roupas confortáveis, tênis, água",
+      "tempo-medio-visita": "2 a 4 horas"
+    },
+    "atracoes": ["Passeio 4x4", "Tirolesa", "Mirante", "Balanço nas alturas"],
+    "contato": {
+      "endereco": "Zona Rural, Areia – PB",
+      "instagram": "https://www.instagram.com/circuitodeaventurastriunfo/"
+    },
+    "visita": {
+      "tipo": "Paga"
+    },
+    "imagem": "https://i.ibb.co/rKRtpZyL/Captura-de-tela-2026-05-25-215829.png",
+    "mapa": {
+      "latitude": -6.975146811230601,
+      "longitude": -35.69479604405134,
+      "link-mapa": "https://maps.app.goo.gl/wBnxnvLMjpKsWSM98"
+    }
+  },
+  {
+    "id": 10,
+    "nome": "Pousada Sierra",
+    "descricao": "Espaço turístico com hospedagem, lazer e experiências gastronômicas típicas da região do Brejo Paraibano.",
+    "categorias": ["turismo", "hospedagem"],
+    "informacoes": {
+      "horario": "24 horas",
+      "dias-abertos": "Todos os dias",
+      "o-que-levar": "Roupas confortáveis",
+      "tempo-medio-visita": "Livre"
+    },
+    "atracoes": [
+      "Hospedagem",
+      "Área de lazer",
+      "Paisagens naturais",
+      "Gastronomia regional"
+    ],
+    "contato": {
+      "endereco": "Areia – PB",
+      "instagram": "https://www.instagram.com/pousada.sierra/"
+    },
+    "visita": {
+      "tipo": "Paga"
+    },
+    "imagem": "https://i.ibb.co/Z3wYnSk/751532368.jpg",
+    "mapa": {
+      "latitude": -6.970971063538685, 
+      "longitude": -35.712280725338736,
+      "link-mapa": "https://maps.app.goo.gl/W13PgN3HJ4nWkAyS9"
     }
   }
 ]
