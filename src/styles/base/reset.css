@@ -89,8 +89,8 @@
    
    /* Foco visível para acessibilidade */
    :focus-visible {
-       outline: 2px solid var(--primary-color);
-       outline-offset: 2px;
+       outline: var(--focus-visible-outline) solid var(--primary-color);
+       outline-offset: var(--focus-visible-offset);
    }
    
    /* Padrão para campos de formulários */
@@ -98,7 +98,7 @@
    textarea,
    select {
        font: inherit;
-       border: 1px solid var(--border-light);
+       border: var(--form-border-width) solid var(--border-light);
        border-radius: var(--radius);
        padding: var(--space-xs);
    }

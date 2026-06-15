@@ -81,7 +81,7 @@ async function handleShowMapClick() {
       "Localização do usuário não obtida. Usando o primeiro local como origem."
     );
     // Se falhar, userLocation permanece null, e o initMap usará o fallback.
-    alert(
+    customAlert(
       "Não foi possível obter sua localização. A rota será calculada a partir do primeiro local da sua lista."
     );
   }
@@ -103,7 +103,7 @@ async function handleShowMapClick() {
     }
   } catch (error) {
     console.error("Erro fatal ao carregar o mapa:", error);
-    alert(`Erro fatal: ${error.message} A rota não pode ser exibida.`);
+    customAlert(`Erro fatal: ${error.message} A rota não pode ser exibida.`);
 
     startRouteButton.disabled = false;
     startRouteButton.innerHTML =

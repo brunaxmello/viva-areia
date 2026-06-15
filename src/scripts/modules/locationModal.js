@@ -1,9 +1,11 @@
 // MÓDULO UI: Componente responsável por gerenciar a exibição, o conteúdo e o estado do Modal de detalhes do local.
 
-import { isLocationSelected } from "../modules/selectedLocationsManager.js"; // ✅ Import necessário para verificar seleção
+import { isLocationSelected } from "../modules/selectedLocationsManager.js"; // Import necessário para verificar seleção
 import { getAddRemoveButtonHtml } from "../modules/locationCardInteractions.js"; // Função para gerar o HTML do botão de adicionar/remover
 
 let modalOverlay = null;
+let lastFocusedElement = null;
+let modalKeyDownHandler = null;
 
 function initModal() {
   if (modalOverlay) return;
@@ -14,8 +16,8 @@ function initModal() {
       <button class="modal-close" aria-label="Fechar modal">
         <i class="bi bi-x-lg"></i>
       </button>
-      <img class="modal-image" src="" alt="">
       <div class="modal-content">
+        <img class="modal-image" src="" alt="">
         <div class="modal-header">
           <h2 class="modal-title"></h2>
           <p class="modal-description"></p>
@@ -23,39 +25,26 @@ function initModal() {
         </div>
         
         <div class="modal-section">
-          <h3 class="modal-section-title">
-            <i class="bi bi-info-circle-fill"></i>
-            Informações
-          </h3>
+          <h3 class="modal-section-title">Informações</h3>
           <div class="modal-info-grid"></div>
         </div>
         
         <div class="modal-section modal-attractions-section">
-          <h3 class="modal-section-title">
-            <i class="bi bi-star-fill"></i>
-            Atrações
-          </h3>
+          <h3 class="modal-section-title">Atrações</h3>
           <ul class="modal-attractions-list"></ul>
         </div>
         
         <div class="modal-section">
-          <h3 class="modal-section-title">
-            <i class="bi bi-telephone-fill"></i>
-            Contato
-          </h3>
+          <h3 class="modal-section-title">Contato</h3>
           <div class="modal-contact-grid"></div>
         </div>
         
         <div class="modal-section">
-          <h3 class="modal-section-title">
-            <i class="bi bi-ticket-perforated-fill"></i>
-            Visita
-          </h3>
+          <h3 class="modal-section-title">Visita</h3>
           <div class="modal-visit-badge"></div>
         </div>
 
         <div class="button-add-container"></div>
-
       </div>
     </div>
   `;
@@ -68,13 +57,6 @@ function initModal() {
   // Fecha o modal ao clicar fora dele
   modalOverlay.addEventListener("click", (e) => {
     if (e.target === modalOverlay) {
-      closeLocationModal();
-    }
-  });
-
-  // Fecha o modal ao pressionar ESC
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modalOverlay.classList.contains("active")) {
       closeLocationModal();
     }
   });
@@ -156,7 +138,10 @@ export function openLocationModal(locationData) {
   if (locationData.atracoes && locationData.atracoes.length > 0) {
     locationData.atracoes.forEach((attraction) => {
       const li = document.createElement("li");
-      li.textContent = attraction;
+      li.innerHTML = `
+        <i class="bi bi-check-lg attraction-icon" aria-hidden="true"></i>
+        <span class="attraction-text">${attraction}</span>
+      `;
       attractionsList.appendChild(li);
     });
   } else {
@@ -227,7 +212,56 @@ export function openLocationModal(locationData) {
   // Mostra o modal
   requestAnimationFrame(() => {
     modalOverlay.classList.add("active");
+    const modalContainer = modal.querySelector('.modal-container');
+    if (modalContainer) {
+      modalContainer.setAttribute('role', 'dialog');
+      modalContainer.setAttribute('aria-modal', 'true');
+      modalContainer.setAttribute('tabindex', '-1');
+      // Linka título e descrição para leitores de tela
+      const titleEl = modal.querySelector('.modal-title');
+      const descEl = modal.querySelector('.modal-description');
+      if (titleEl && !titleEl.id) titleEl.id = `modal-title-${locationId}`;
+      if (descEl && !descEl.id) descEl.id = `modal-desc-${locationId}`;
+      modalContainer.setAttribute('aria-labelledby', titleEl.id);
+      modalContainer.setAttribute('aria-describedby', descEl.id);
+    }
+    const closeBtn = modal.querySelector('.modal-close');
+    if (closeBtn) closeBtn.focus();
   });
+
+  // Guarda o elemento que tinha foco antes de abrir
+  lastFocusedElement = document.activeElement;
+
+  // Manipulador de teclado para trap de foco e fechar com ESC
+  modalKeyDownHandler = function (e) {
+    if (e.key === "Escape") {
+      closeLocationModal();
+      return;
+    }
+
+    if (e.key === "Tab") {
+      const focusable = modal.querySelectorAll(
+        'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+  };
+
+  document.addEventListener("keydown", modalKeyDownHandler);
 
   document.body.style.overflow = "hidden";
 }
@@ -240,4 +274,15 @@ export function closeLocationModal() {
 
   // Restaura o scroll do body
   document.body.style.overflow = "";
+  // Remove listener de teclado do modal
+  if (modalKeyDownHandler) {
+    document.removeEventListener("keydown", modalKeyDownHandler);
+    modalKeyDownHandler = null;
+  }
+
+  // Retorna o foco para o elemento anterior
+  if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+    lastFocusedElement.focus();
+  }
+  lastFocusedElement = null;
 }

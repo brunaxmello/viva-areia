@@ -6,10 +6,10 @@ import {
   addLocation,
   removeLocation,
   isLocationSelected,
-  getSelectedLocations, // ← ADICIONADO
+  getSelectedLocations,
 } from "../modules/selectedLocationsManager.js"; // Funções para gerenciar locais selecionados
 import { updateLocationCounter } from "../modules/badgeLocationCounter.js"; // Função para atualizar o contador de locais selecionados
-import { customAlert } from "../modules/customAlert.js"; // ← ADICIONADO
+import { customAlert } from "../modules/customAlert.js";
 
 
 
@@ -22,27 +22,31 @@ export function getAddRemoveButtonHtml(locationId, isRemovablePage, isSelected =
     
     // 1. ESTADO REMOVER (Usado em selected-locations.html ou se já estiver no localStorage)
     if (isRemovableState) {
-        return `<button class="${baseClasses} btn-remove-location" data-location-id="${locationId}">
-                    Remover <i class="bi bi-dash-lg"></i>
-                </button>`;
+      return `<button type="button" class="${baseClasses} btn-remove-location" data-location-id="${locationId}" aria-pressed="true" aria-label="Remover local do roteiro">
+            Remover <i class="bi bi-dash-lg" aria-hidden="true"></i>
+          </button>`;
     }
 
     // 2. ESTADO PADRÃO (Adicionar)
-    return `<button class="${baseClasses}" data-location-id="${locationId}">
-                Adicionar <i class="bi bi-plus-lg"></i>
-            </button>`;
+    return `<button type="button" class="${baseClasses}" data-location-id="${locationId}" aria-pressed="false" aria-label="Adicionar local ao roteiro">
+          Adicionar <i class="bi bi-plus-lg" aria-hidden="true"></i>
+        </button>`;
 }
 
 // Função que troca o texto e a aparência do botão do card
 export function toggleCardButton(buttonElement, isAdded) {
   if (isAdded) {
     // Estado: Já adicionado
-    buttonElement.innerHTML = 'Remover <i class="bi bi-dash-lg"></i>';
+    buttonElement.innerHTML = 'Remover <i class="bi bi-dash-lg" aria-hidden="true"></i>';
     buttonElement.classList.add("btn-remove-location");
+    buttonElement.setAttribute("aria-pressed", "true");
+    buttonElement.setAttribute("aria-label", "Remover local do roteiro");
   } else {
     // Estado: Padrão (Adicionar)
-    buttonElement.innerHTML = 'Adicionar <i class="bi bi-plus-lg"></i>';
+    buttonElement.innerHTML = 'Adicionar <i class="bi bi-plus-lg" aria-hidden="true"></i>';
     buttonElement.classList.remove("btn-remove-location");
+    buttonElement.setAttribute("aria-pressed", "false");
+    buttonElement.setAttribute("aria-label", "Adicionar local ao roteiro");
   }
 }
 

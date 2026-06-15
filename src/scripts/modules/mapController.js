@@ -1,4 +1,5 @@
 import { MAP_ID } from "../config/config.js";
+import { customAlert } from "../modules/customAlert.js";
 
 function buildMarkerContent(label) {
   const content = document.createElement("div");
@@ -60,7 +61,7 @@ export async function initMap(googleMaps, containerSelector, selectedLocationsDa
     .filter((loc) => Number.isFinite(loc.lat) && Number.isFinite(loc.lng));
 
   if (validLocations.length === 0) {
-    alert("Não há locais válidos para exibir no mapa.");
+    customAlert("Não há locais válidos para exibir no mapa.");
     return;
   }
 
@@ -112,7 +113,7 @@ export async function initMap(googleMaps, containerSelector, selectedLocationsDa
       window.open(mapsUrl, "_blank");
     } else {
       console.error("Erro ao gerar rota:", status, response);
-      alert("Não foi possível gerar a rota. Verifique a API Key e o Map ID.");
+      customAlert("Não foi possível gerar a rota. Verifique a API Key e o Map ID.");
     }
   });
 }

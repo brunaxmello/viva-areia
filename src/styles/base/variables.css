@@ -50,6 +50,8 @@
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
+    /* Fonte base do texto usado em botões e componentes */
+    --font-size-base: var(--text-base);
     
     /* Espaçamentos - Regra do 8 (múltiplos de 8px) */
     --space-2xs: 0.25rem;   /* 4px (exceção) */
@@ -74,4 +76,107 @@
     --transicao-suave-saida: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --transicao-padrao-cor: color var(--transicao-rapida), background-color var(--transicao-rapida);
     --transicao-padrao-transform: transform var(--transicao-rapida) var(--transicao-suave-saida);
+    /* Component tokens (cards, buttons, alerts, search) */
+    --card-height: 200px;
+    --card-image-height: 200px;
+    --card-padding-vertical: 6px;
+    --card-padding-horizontal: 12px;
+    --card-gap: 8px;
+    --card-title-size: var(--text-base);
+    --card-text-size: var(--text-sm);
+
+    --btn-card-min-width: 96px;
+    --btn-card-min-height: 40px;
+    --btn-card-font-size: var(--text-sm);
+    --btn-card-padding-vertical: var(--space-xs);
+    --btn-card-padding-horizontal: var(--space-sm);
+
+    --search-label-left: 20px;
+    --search-label-top-focused: 6px;
+    --search-label-font-size-focused: 0.75rem;
+
+    --alert-overlay-bg: rgba(0, 0, 0, 0.45);
+    --alert-bg-color: #F7FAF7;
+    --alert-icon-bg: #E8F6E6;
+    --alert-icon-color: #294727;
+    --alert-text-color: #294727;
+    /* Espaços e tamanhos adicionados para substituir valores fixos */
+    --layout-header-offset: 58px;
+    --initial-logo-max-width: 250px;
+    --initial-text-max-width: 223px;
+    --illustration-bottom: 0px;
+    --illustration-height-mobile: 180px;
+    --illustration-height-md: 250px;
+    --sr-size: 1px;
+    --sr-margin: -1px;
+    --search-padding-vertical: 12px;
+    --btn-category-min-width: 74px;
+    --icon-category-size: 40px;
+    --btn-see-size: 60px;
+    --fab-space-mobile-right: 10px;
+    --fab-space-mobile-bottom: 10px;
+    --fab-space-desktop-right: 30px;
+    --btn-counter-top: -6px;
+    --btn-counter-right: -6px;
+    --btn-counter-font-size: 12px;
+    --btn-counter-padding-vertical: 6px;
+    --btn-counter-padding-horizontal: 8px;
+    --btn-counter-min-width: 22px;
+    --explore-margin-top: 65px;
+    --container-max-width: 1200px;
+    --selected-routes-margin-top: 74px;
+    /* Botões e foco */
+    --btn-min-height: 44px;
+    --btn-translate-y: -2px;
+    --outline-size: 3px;
+    --outline-offset: 3px;
+    --focus-ring-shadow: 0 0 0 3px rgba(181, 234, 178, 0.18);
+
+    /* Alert modal */
+    --alert-padding-top: 50px;
+    --alert-border-radius: 24px;
+    --alert-max-width: 440px;
+    --alert-box-shadow: 0 8px 22px rgba(0, 0, 0, 0.10);
+    --alert-translate-y: -20px;
+    --alert-padding: 20px 24px;
+    --alert-close-padding: 8px;
+    --alert-close-outline: 2px solid rgba(0,0,0,0.12);
+    --alert-icon-size: 48px;
+    --alert-icon-radius: 14px;
+    --alert-icon-font-size: 26px;
+
+    /* Pequenos ajustes */
+    --card-sep: 2px;
+    /* Reset / foco / formulários */
+    --focus-visible-outline: 2px;
+    --focus-visible-offset: 2px;
+    --form-border-width: 1px;
+    /* Location modal */
+    --location-modal-max-width: 600px;
+    --location-modal-close-size: 40px;
+    --location-modal-map-height-mobile: 280px;
+    --location-modal-map-height-desktop: 380px;
+    --location-modal-min-control-width: 24px;
+    --location-modal-scrollbar-width: 8px;
+
+    /* Header */
+    --header-logo-width: 90px;
+
+    /* Alert triangle / close offsets */
+    --alert-triangle-bottom: -12px;
+    --alert-triangle-right: 40px;
+    --alert-triangle-size: 14px;
+    --alert-close-offset: 8px;
+    --alert-close-radius: 6px;
+    /* Modal (ajustes para alinhar ao padrão da página principal) */
+    --modal-padding: var(--space-sm);
+    --modal-title-size: var(--text-lg);
+    --modal-desc-size: var(--text-sm);
+    --modal-section-border-width: 2px;
+    --modal-category-padding-vertical: var(--space-2xs);
+    --modal-category-padding-horizontal: var(--space-sm);
+    --modal-overlay-bg: rgba(0, 0, 0, 0.7);
+    /* FAB / floating button */
+    --fab-box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    --fab-border: 2px solid rgba(0,0,0,0.06);
   }

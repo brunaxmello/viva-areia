@@ -1,5 +1,5 @@
 .selected-locations-content {
-    margin-top: 74px;
+    margin-top: var(--selected-routes-margin-top);
 
     display: flex;
     flex-direction: column;
@@ -8,8 +8,8 @@
 
 .btn-see-route {
     position: fixed;
-    right: 10px;
-    bottom: 10px;
+    right: var(--fab-space-mobile-right);
+    bottom: var(--fab-space-mobile-bottom);
 
     display: flex;
     gap: var(--space-xs);

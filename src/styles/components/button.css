@@ -16,18 +16,19 @@
     font-family: inherit;
     font-size: var(--font-size-base);
     text-align: center;
-    min-height: 44px;
+    min-height: var(--btn-min-height);
 }
 
 .btn:hover {
     box-shadow: var(--shadow);
-    transform: translateY(-2px);
+    transform: translateY(var(--btn-translate-y));
     background-color: var(--secondary-color);
 }
 
 .btn:focus {
-    outline: 2px solid var(--accent-color);
-    outline-offset: 2px;
+    outline: var(--outline-size) solid var(--border-focus);
+    outline-offset: var(--outline-offset);
+    box-shadow: var(--focus-ring-shadow);
 }
 
 .btn:disabled {

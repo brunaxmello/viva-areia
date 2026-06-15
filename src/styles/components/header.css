@@ -28,8 +28,8 @@
 }
 
 .logo-img-header {
-    width: 90px;
-    max-width: 90px;
+    width: var(--header-logo-width);
+    max-width: var(--header-logo-width);
     height: auto;
 
     grid-area: logo-img-header;
@@ -40,7 +40,13 @@
     text-align: right;
     width: 100%;
     align-self: center;
-    color: var(--text-muted)
+    color: var(--primary-color);
+    font-weight: var(--font-weight-medium);
+}
+
+.header-link:focus, .header-link:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
 }
 
 @media (min-width: 768px) {
